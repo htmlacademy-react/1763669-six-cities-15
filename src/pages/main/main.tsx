@@ -1,5 +1,5 @@
 import PlaceCard from '../../components/place-сard/place-сard';
-import {placeCardsData} from '../../components/place-сard/place-card-data';
+import {cardsMain} from '../../components/place-сard/place-card-data';
 
 type MainProps = {
   placesCount: number;
@@ -96,7 +96,7 @@ function Main({placesCount}: MainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {placeCardsData.map((card) => (
+                {cardsMain.map((card) => (
                   <PlaceCard
                     key={card.key}
                     img={card.img}

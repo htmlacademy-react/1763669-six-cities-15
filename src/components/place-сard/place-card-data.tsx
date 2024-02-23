@@ -1,4 +1,4 @@
-export const placeCardsData = [
+export const cardsMain = [
   {
     key: 1,
     img: 'apartment-01',
