@@ -4,6 +4,7 @@ import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
 import Offer from '../../pages/offer/offer';
+import NotFound from '../../pages/not-found/not-found';
 
 type AppProps = {
   placesCount: number;
@@ -28,6 +29,10 @@ function App({placesCount}: AppProps): JSX.Element {
         <Route
           path={AppRoute.Offer}
           element={<Offer />}
+        />
+        <Route
+          path='*'
+          element={<NotFound />}
         />
       </Routes>
     </BrowserRouter>
