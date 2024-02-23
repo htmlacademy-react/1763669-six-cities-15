@@ -1,5 +1,6 @@
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute} from '../const';
+import {AppRoute, AuthorizationStatus} from '../const';
+import PrivateRoute from '../private-route/private-route';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
@@ -24,7 +25,11 @@ function App({placesCount}: AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.Favorites}
-          element={<Favorites />}
+          element={
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <Favorites />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.Offer}
