@@ -44,3 +44,32 @@ export const cardsMain = [
     rating: 80,
   },
 ];
+
+export const cardsOffer = [
+  {
+    key: 1,
+    img: 'room',
+    price: 80,
+    title: 'Wood and stone place',
+    housingType: 'Room',
+    isFavorite: true,
+    rating: 80,
+  },
+  {
+    key: 2,
+    img: 'apartment-02',
+    price: 132,
+    title: 'Canal View Prinsengracht',
+    housingType: 'Apartment',
+    rating: 80,
+  },
+  {
+    key: 3,
+    img: 'apartment-03',
+    isPremium: true,
+    price: 180,
+    title: 'Nice, cozy, warm big bed apartment',
+    housingType: 'Apartment',
+    rating: 100,
+  },
+];
