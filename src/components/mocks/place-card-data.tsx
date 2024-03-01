@@ -1,6 +1,6 @@
 export const cardsMain = [
   {
-    key: 1,
+    id: 1,
     img: 'apartment-01',
     isPremium: true,
     price: 120,
@@ -9,7 +9,7 @@ export const cardsMain = [
     rating: 80,
   },
   {
-    key: 2,
+    id: 2,
     img: 'room',
     price: 80,
     title: 'Wood and stone place',
@@ -18,7 +18,7 @@ export const cardsMain = [
     rating: 80,
   },
   {
-    key: 3,
+    id: 3,
     img: 'apartment-02',
     price: 132,
     title: 'Canal View Prinsengracht',
@@ -26,7 +26,7 @@ export const cardsMain = [
     rating: 80,
   },
   {
-    key: 4,
+    id: 4,
     img: 'apartment-03',
     isPremium: true,
     price: 180,
@@ -35,7 +35,7 @@ export const cardsMain = [
     rating: 100,
   },
   {
-    key: 5,
+    id: 5,
     img: 'room',
     price: 80,
     title: 'Wood and stone place',
@@ -47,7 +47,7 @@ export const cardsMain = [
 
 export const cardsOffer = [
   {
-    key: 1,
+    id: 1,
     img: 'room',
     price: 80,
     title: 'Wood and stone place',
@@ -56,7 +56,7 @@ export const cardsOffer = [
     rating: 80,
   },
   {
-    key: 2,
+    id: 2,
     img: 'apartment-02',
     price: 132,
     title: 'Canal View Prinsengracht',
@@ -64,7 +64,7 @@ export const cardsOffer = [
     rating: 80,
   },
   {
-    key: 3,
+    id: 3,
     img: 'apartment-03',
     isPremium: true,
     price: 180,
