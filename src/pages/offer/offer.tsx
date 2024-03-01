@@ -1,6 +1,6 @@
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
-import PlaceCard from '../../components/place-сard/place-сard';
+import PlaceCard from '../../components/blocks/place-сard/place-сard';
 import {cardsOffer} from '../../components/mocks/place-card-data';
 
 function Offer(): JSX.Element {
