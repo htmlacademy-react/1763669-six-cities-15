@@ -1,7 +1,7 @@
 import {Helmet} from 'react-helmet-async';
 import {Link} from 'react-router-dom';
-import PlaceCard from '../../components/blocks/place-сard/place-сard';
 import {cardsOffer} from '../../components/mocks/place-card-data';
+import PlaceCards from '../../components/blocks/place-card-list/place-card-list';
 
 function Offer(): JSX.Element {
   return (
@@ -239,18 +239,7 @@ function Offer(): JSX.Element {
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
-              {cardsOffer.map((card) => (
-                <PlaceCard
-                  key={card.key}
-                  img={card.img}
-                  isPremium={card.isPremium}
-                  price={card.price}
-                  title={card.title}
-                  housingType={card.housingType}
-                  isFavorite={card.isFavorite}
-                  rating={card.rating}
-                />
-              ))}
+              <PlaceCards cardsList={cardsOffer} />
             </div>
           </section>
         </div>

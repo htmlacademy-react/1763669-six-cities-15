@@ -1,4 +1,4 @@
-import PlaceCard from '../../components/blocks/place-сard/place-сard';
+import PlaceCards from '../../components/blocks/place-card-list/place-card-list';
 import {cardsMain} from '../../components/mocks/place-card-data';
 
 type MainProps = {
@@ -96,18 +96,7 @@ function Main({placesCount}: MainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                {cardsMain.map((card) => (
-                  <PlaceCard
-                    key={card.key}
-                    img={card.img}
-                    isPremium={card.isPremium}
-                    price={card.price}
-                    title={card.title}
-                    housingType={card.housingType}
-                    isFavorite={card.isFavorite}
-                    rating={card.rating}
-                  />
-                ))}
+                <PlaceCards list={cardsMain} />
               </div>
             </section>
             <div className="cities__right-section">
