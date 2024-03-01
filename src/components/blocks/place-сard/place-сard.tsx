@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom';
 
-export type placeCardDataProps = {
+export type PlaceCardProps = {
   id: string;
   img: string;
   isPremium?: boolean;
@@ -11,7 +11,7 @@ export type placeCardDataProps = {
   rating: number;
 };
 
-function PlaceCard(props: placeCardDataProps): JSX.Element {
+function PlaceCard(props: PlaceCardProps): JSX.Element {
   return (
     <article className="cities__card place-card">
       {props.isPremium && (

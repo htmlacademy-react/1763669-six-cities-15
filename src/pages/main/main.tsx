@@ -1,4 +1,4 @@
-import PlaceCards from '../../components/blocks/place-card-list/place-card-list';
+import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import {cardsMain} from '../../components/mocks/place-card-data';
 
 type MainProps = {
