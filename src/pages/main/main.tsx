@@ -96,7 +96,7 @@ function Main({placesCount}: MainProps): JSX.Element {
                 </ul>
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <PlaceCards list={cardsMain} />
+                <PlaceCards cards={cardsMain} />
               </div>
             </section>
             <div className="cities__right-section">

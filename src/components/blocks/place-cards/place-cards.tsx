@@ -2,12 +2,14 @@ import { PlaceCardProps } from '../place-сard/place-сard';
 import PlaceCard from '../place-сard/place-сard';
 
 
-export type PlaceCardsProps = PlaceCardProps[];
+export type PlaceCardsProps = {
+  cards: PlaceCardProps[];
+};
 
-function PlaceCards(cardsList: PlaceCardsProps): JSX.Element {
+function PlaceCards({cards}: PlaceCardsProps): JSX.Element {
   return (
     <>
-      {cardsList.map((card: PlaceCardProps) => (
+      {cards.map((card: PlaceCardProps) => (
         <PlaceCard
           key={card.id}
           id={card.id}
