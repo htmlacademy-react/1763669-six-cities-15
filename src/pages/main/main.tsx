@@ -1,5 +1,5 @@
 import PlaceCard from '../../components/place-сard/place-сard';
-import {cardsMain} from '../../components/place-сard/place-card-data';
+import {cardsMain} from '../../components/mocks/place-card-data';
 
 type MainProps = {
   placesCount: number;
