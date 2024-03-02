@@ -2,13 +2,13 @@ import {Link} from 'react-router-dom';
 
 export type PlaceCardProps = {
   id: string;
-  img: string;
-  isPremium?: boolean;
-  price: number;
   title: string;
-  housingType: string;
+  type: string;
+  price: number;
   isFavorite?: boolean;
+  isPremium?: boolean;
   rating: number;
+  previewImage: string;
 };
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
@@ -21,7 +21,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
       )}
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image" src={`img/${props.img}.jpg`} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={`img/${props.previewImage}.jpg`} width="260" height="200" alt="Place image" />
         </a>
       </div>
       <div className="place-card__info">
@@ -55,7 +55,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         <h2 className="place-card__name">
           <Link to={props.id}>{props.title}</Link>
         </h2>
-        <p className="place-card__type">{props.housingType}</p>
+        <p className="place-card__type">{props.type.charAt(0).toUpperCase() + props.type.slice(1)}</p>
       </div>
     </article>
   );
