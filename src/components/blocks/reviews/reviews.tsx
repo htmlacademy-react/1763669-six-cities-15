@@ -1,20 +1,6 @@
+import {ReviewsProps} from './types';
+import {ReviewProps} from '../review/types';
 import Review from '../review/review';
-
-export type ReviewProps = {
-  id: string;
-  date: string;
-  user: {
-    name: string;
-    avatarUrl: string;
-    isPro?: boolean;
-  };
-  comment: string;
-  rating: number;
-}
-
-export type ReviewsProps = {
-  items: ReviewProps[];
-};
 
 function Reviews({items}: ReviewsProps): JSX.Element {
   return (

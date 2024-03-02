@@ -1,4 +1,4 @@
-import {ReviewProps} from '../reviews/reviews';
+import {ReviewProps} from './types';
 
 function Review(props: ReviewProps): JSX.Element {
   const convertDataToText = () => {

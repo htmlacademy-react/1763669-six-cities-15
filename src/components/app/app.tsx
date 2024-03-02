@@ -1,16 +1,13 @@
+import {AppProps} from './types';
 import {HelmetProvider} from 'react-helmet-async';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import {AppRoute, AuthorizationStatus} from '../const';
+import {AppRoute, AuthorizationStatus} from '../consts';
 import PrivateRoute from '../blocks/private-route/private-route';
 import Main from '../../pages/main/main';
 import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
 import Offer from '../../pages/offer/offer';
 import NotFound from '../../pages/not-found/not-found';
-
-type AppProps = {
-  placesCount: number;
-};
 
 function App({placesCount}: AppProps): JSX.Element {
   return (
