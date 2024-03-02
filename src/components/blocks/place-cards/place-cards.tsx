@@ -10,17 +10,7 @@ function PlaceCards({cards}: PlaceCardsProps): JSX.Element {
   return (
     <>
       {cards.map((card: PlaceCardProps) => (
-        <PlaceCard
-          key={card.id}
-          id={card.id}
-          img={card.img}
-          isPremium={card.isPremium}
-          price={card.price}
-          title={card.title}
-          housingType={card.housingType}
-          isFavorite={card.isFavorite}
-          rating={card.rating}
-        />
+        <PlaceCard {...card} key={card.id} />
       ))}
     </>
   );
