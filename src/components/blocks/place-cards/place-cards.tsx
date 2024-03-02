@@ -1,6 +1,15 @@
-import { PlaceCardProps } from '../place-сard/place-сard';
 import PlaceCard from '../place-сard/place-сard';
 
+export type PlaceCardProps = {
+  id: string;
+  title: string;
+  type: string;
+  price: number;
+  isFavorite?: boolean;
+  isPremium?: boolean;
+  rating: number;
+  previewImage: string;
+};
 
 export type PlaceCardsProps = {
   cards: PlaceCardProps[];

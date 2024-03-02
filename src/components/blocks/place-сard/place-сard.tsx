@@ -1,19 +1,18 @@
+import {useState} from 'react';
 import {Link} from 'react-router-dom';
-
-export type PlaceCardProps = {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  isFavorite?: boolean;
-  isPremium?: boolean;
-  rating: number;
-  previewImage: string;
-};
+import {PlaceCardProps} from '../place-cards/place-cards';
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
+  const [activeCardId, setActiveCardId] = useState('');
+
+  const showActiveCard = (id: string) => {
+    setActiveCardId(id);
+    // console.log('active card:', activeCardId);
+    return activeCardId;
+  };
+
   return (
-    <article className="cities__card place-card">
+    <article className="cities__card place-card" onMouseOver={() => showActiveCard (props.id)}>
       {props.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
