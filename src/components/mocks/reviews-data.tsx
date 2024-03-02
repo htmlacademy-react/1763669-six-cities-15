@@ -7,7 +7,7 @@ export const reviews = [
       avatarUrl: 'img/avatar-max.jpg',
     },
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.',
-    rating: 80,
+    rating: 4.3,
   },
   {
     id: 'b67ddfd5-b953-4a30-8c8d-bd083cd6b62a',
@@ -17,6 +17,6 @@ export const reviews = [
       avatarUrl: 'https://url-to-image/image.png',
     },
     comment: 'A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.',
-    rating: 80,
+    rating: 4,
   },
 ];

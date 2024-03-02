@@ -6,7 +6,7 @@ export const cardsMain = [
     price: 120,
     title: 'Beautiful &amp; luxurious apartment at great location',
     housingType: 'Apartment',
-    rating: 80,
+    rating: 4.1,
   },
   {
     id: '2',
@@ -15,7 +15,7 @@ export const cardsMain = [
     title: 'Wood and stone place',
     housingType: 'Room',
     isFavorite: true,
-    rating: 80,
+    rating: 4,
   },
   {
     id: '3',
@@ -23,7 +23,7 @@ export const cardsMain = [
     price: 132,
     title: 'Canal View Prinsengracht',
     housingType: 'Apartment',
-    rating: 80,
+    rating: 4.4,
   },
   {
     id: '4',
@@ -32,7 +32,7 @@ export const cardsMain = [
     price: 180,
     title: 'Nice, cozy, warm big bed apartment',
     housingType: 'Apartment',
-    rating: 100,
+    rating: 4.7,
   },
   {
     id: '5',
@@ -41,7 +41,7 @@ export const cardsMain = [
     title: 'Wood and stone place',
     housingType: 'Room',
     isFavorite: true,
-    rating: 80,
+    rating: 4,
   },
 ];
 
@@ -53,7 +53,7 @@ export const cardsOffer = [
     title: 'Wood and stone place',
     housingType: 'Room',
     isFavorite: true,
-    rating: 80,
+    rating: 4.3,
   },
   {
     id: '2',
@@ -61,7 +61,7 @@ export const cardsOffer = [
     price: 132,
     title: 'Canal View Prinsengracht',
     housingType: 'Apartment',
-    rating: 80,
+    rating: 84.3,
   },
   {
     id: '3',
@@ -70,6 +70,6 @@ export const cardsOffer = [
     price: 180,
     title: 'Nice, cozy, warm big bed apartment',
     housingType: 'Apartment',
-    rating: 100,
+    rating: 4.9,
   },
 ];
