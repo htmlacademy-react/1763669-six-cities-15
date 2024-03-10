@@ -40,9 +40,9 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
           pathname === AppRoute.Favorites.toString() && 'favorites__image-wrapper',
         ])}
       >
-        <a href="#">
+        <Link to="#">
           <img className="place-card__image" src={`img/${props.previewImage}.jpg`} width={previewWidth} height={previewHeight} alt="Place image" />
-        </a>
+        </Link>
       </div>
       <div
         className={classNames([
