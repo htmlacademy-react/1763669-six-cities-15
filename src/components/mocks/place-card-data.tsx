@@ -73,3 +73,44 @@ export const cardsOffer = [
     previewImage: 'apartment-03',
   },
 ];
+
+export const cardsFavorites = [
+  {
+    id: '1',
+    title: 'Nice, cozy, warm big bed apartment',
+    type: 'apartment',
+    price: 180,
+    city: {
+      name: 'Amsterdam',
+    },
+    isFavorite: true,
+    isPremium: true,
+    rating: 4.8,
+    previewImage: 'apartment-small-03',
+  },
+  {
+    id: '2',
+    title: 'Wood and stone place',
+    type: 'room',
+    price: 80,
+    city: {
+      name: 'Amsterdam',
+    },
+    isFavorite: true,
+    rating: 4.3,
+    previewImage: 'room-small',
+  },
+  {
+    id: '3',
+    title: 'White castl',
+    type: 'apartment',
+    price: 180,
+    city: {
+      name: 'Colgone',
+    },
+    isFavorite: true,
+    rating: 5,
+    previewImage: 'apartment-small-04',
+  },
+];
+
