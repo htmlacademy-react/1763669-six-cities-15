@@ -17,6 +17,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     // console.log('active card:', activeCardId);
     return activeCardId;
   };
+
   return (
     <article
       className={classNames([
