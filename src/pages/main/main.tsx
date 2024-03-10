@@ -95,9 +95,7 @@ function Main({placesCount}: MainProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                <PlaceCards cards={cardsMain} />
-              </div>
+              <PlaceCards cards={cardsMain} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>

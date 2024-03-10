@@ -173,9 +173,7 @@ function Offer(): JSX.Element {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <div className="near-places__list places__list">
-              <PlaceCards cards={cardsOffer} />
-            </div>
+            <PlaceCards cards={cardsOffer} />
           </section>
         </div>
       </main>

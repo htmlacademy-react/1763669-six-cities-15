@@ -1,8 +1,15 @@
 import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import {PlaceCardProps} from './types';
+import classNames from 'classnames';
+import { AppRoute } from '../../consts';
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
+  const {pathname} = useLocation();
+
+  const previewWidth = pathname === AppRoute.Favorites.toString() ? 150 : 260;
+  const previewHeight = pathname === AppRoute.Favorites.toString() ? 110 : 200;
+
   const [activeCardId, setActiveCardId] = useState('');
 
   const showActiveCard = (id: string) => {
@@ -10,40 +17,57 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     // console.log('active card:', activeCardId);
     return activeCardId;
   };
-
   return (
-    <article className="cities__card place-card" onMouseOver={() => showActiveCard (props.id)}>
+    <article
+      className={classNames([
+        'place-card',
+        pathname === AppRoute.Main.toString() && 'cities__card',
+        pathname === AppRoute.Offer.toString() && 'near-places__card',
+        pathname === AppRoute.Favorites.toString() && 'favorites__card',
+      ])}
+      onMouseOver={() => showActiveCard (props.id)}
+    >
       {props.isPremium && (
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
       )}
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div
+        className={classNames([
+          'place-card__image-wrapper',
+          pathname === AppRoute.Main.toString() && 'cities__image-wrapper',
+          pathname === AppRoute.Offer.toString() && 'near-places__image-wrapper',
+          pathname === AppRoute.Favorites.toString() && 'favorites__image-wrapper',
+        ])}
+      >
         <a href="#">
-          <img className="place-card__image" src={`img/${props.previewImage}.jpg`} width="260" height="200" alt="Place image" />
+          <img className="place-card__image" src={`img/${props.previewImage}.jpg`} width={previewWidth} height={previewHeight} alt="Place image" />
         </a>
       </div>
-      <div className="place-card__info">
+      <div
+        className={classNames([
+          'place-card__info',
+          pathname === AppRoute.Favorites.toString() && 'favorites__card-info',
+        ])}
+      >
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{props.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          {props.isFavorite ? (
-            <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">In bookmarks</span>
-            </button>
-          ) : (
-            <button className="place-card__bookmark-button button" type="button">
-              <svg className="place-card__bookmark-icon" width="18" height="19">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
-          )}
+          <button
+            className={classNames([
+              'place-card__bookmark-button',
+              'button',
+              props.isFavorite && 'place-card__bookmark-button--active'
+            ])}
+            type="button"
+          >
+            <svg className="place-card__bookmark-icon" width="18" height="19">
+              <use xlinkHref="#icon-bookmark"></use>
+            </svg>
+            <span className="visually-hidden">In bookmarks</span>
+          </button>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
