@@ -1,5 +1,6 @@
-import PlaceCard from '../../components/place-сard/place-сard';
-import {cardsMain} from '../../components/place-сard/place-card-data';
+import { Link } from 'react-router-dom';
+import PlaceCards from '../../components/blocks/place-cards/place-cards';
+import {cardsMain} from '../../components/mocks/place-card-data';
 
 type MainProps = {
   placesCount: number;
@@ -43,19 +44,19 @@ function Main({placesCount}: MainProps): JSX.Element {
           <section className="locations container">
             <ul className="locations__list tabs__list">
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to="#">
                   <span>Paris</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to="#">
                   <span>Cologne</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to="#">
                   <span>Brussels</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
                 <a className="locations__item-link tabs__item tabs__item--active">
@@ -63,14 +64,14 @@ function Main({placesCount}: MainProps): JSX.Element {
                 </a>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to="#">
                   <span>Hamburg</span>
-                </a>
+                </Link>
               </li>
               <li className="locations__item">
-                <a className="locations__item-link tabs__item" href="#">
+                <Link className="locations__item-link tabs__item" to="#">
                   <span>Dusseldorf</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </section>
@@ -95,20 +96,7 @@ function Main({placesCount}: MainProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {cardsMain.map((card) => (
-                  <PlaceCard
-                    key={card.key}
-                    img={card.img}
-                    isPremium={card.isPremium}
-                    price={card.price}
-                    title={card.title}
-                    housingType={card.housingType}
-                    isFavorite={card.isFavorite}
-                    rating={card.rating}
-                  />
-                ))}
-              </div>
+              <PlaceCards cards={cardsMain} />
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
