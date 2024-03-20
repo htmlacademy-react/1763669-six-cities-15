@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
-
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import { cardsMain } from '../../components/mocks/place-card-data';
 import Map from '../../components/blocks/map/map';
-import { city } from '../../components/consts';
+import { city, CITIES } from '../../components/consts';
 import { points } from '../../components/mocks/points';
+import LocationList from '../../components/blocks/location-list/location-list';
 
 type MainProps = {
   placesCount: number;
@@ -46,38 +45,7 @@ function Main({ placesCount }: MainProps): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="#">
-                  <span>Paris</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="#">
-                  <span>Cologne</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="#">
-                  <span>Brussels</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <a className="locations__item-link tabs__item tabs__item--active">
-                  <span>Amsterdam</span>
-                </a>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="#">
-                  <span>Hamburg</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="#">
-                  <span>Dusseldorf</span>
-                </Link>
-              </li>
-            </ul>
+            <LocationList cities={CITIES} />
           </section>
         </div>
         <div className="cities">

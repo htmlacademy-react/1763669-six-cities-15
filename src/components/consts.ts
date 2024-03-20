@@ -56,3 +56,36 @@ export const city = {
   }
 };
 
+export const CITIES = [
+  {
+    name: 'Paris',
+    link: '#',
+    isActive: false,
+  },
+  {
+    name: 'Cologne',
+    link: '#',
+    isActive: false,
+  },
+  {
+    name: 'Brussels',
+    link: '#',
+    isActive: false,
+  },
+  {
+    name: 'Amsterdam',
+    link: '#',
+    isActive: true,
+  },
+  {
+    name: 'Hamburg',
+    link: '#',
+    isActive: false,
+  },
+  {
+    name: 'Dusseldorf',
+    link: '#',
+    isActive: false,
+  },
+];
+
