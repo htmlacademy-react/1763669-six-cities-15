@@ -5,6 +5,9 @@ import {reviews} from '../../components/mocks/reviews-data';
 import {cardsOffer} from '../../components/mocks/place-card-data';
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import FormComment from '../../components/blocks/form-comment/form-comment';
+import Map from '../../components/blocks/map/map';
+import { city } from '../../components/consts';
+import { points } from '../../components/mocks/points';
 
 function Offer(): JSX.Element {
   return (
@@ -168,7 +171,7 @@ function Offer(): JSX.Element {
               </section>
             </div>
           </div>
-          <section className="offer__map map"></section>
+          <Map city={city} points={points} />
         </section>
         <div className="container">
           <section className="near-places places">

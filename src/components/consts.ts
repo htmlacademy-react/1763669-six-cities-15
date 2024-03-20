@@ -6,7 +6,7 @@ export enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
-  Offer = '/offer',
+  Offer = '/offer/',
 }
 
 export enum AuthorizationStatus {
@@ -42,3 +42,17 @@ export const STAR_RATING = [
     title: 'terribly'
   },
 ];
+
+export const URL_MARKER_DEFAULT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/pin.svg';
+
+export const URL_MARKER_CURRENT = 'https://assets.htmlacademy.ru/content/intensive/javascript-1/demo/interactive-map/main-pin.svg';
+
+export const city = {
+  name: 'Amsterdam',
+  location: {
+    latitude: 52.3909553943508,
+    longitude: 4.85309666406198,
+    zoom: 11
+  }
+};
+
