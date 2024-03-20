@@ -10,12 +10,14 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   const previewWidth = pathname === AppRoute.Favorites.toString() ? 150 : 260;
   const previewHeight = pathname === AppRoute.Favorites.toString() ? 110 : 200;
 
-  const [activeCardId, setActiveCardId] = useState('');
+  const [, setActiveCardId] = useState('');
 
   const showActiveCard = (id: string) => {
     setActiveCardId(id);
-    // console.log('active card:', activeCardId);
-    return activeCardId;
+  };
+
+  const resetActiveCard = () => {
+    setActiveCardId('');
   };
 
   return (
@@ -27,6 +29,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         pathname === AppRoute.Favorites.toString() && 'favorites__card',
       ])}
       onMouseOver={() => showActiveCard (props.id)}
+      onMouseLeave={() => resetActiveCard()}
     >
       {props.isPremium && (
         <div className="place-card__mark">
