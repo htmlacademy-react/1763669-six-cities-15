@@ -1,8 +1,9 @@
-import {Helmet} from 'react-helmet-async';
-import {Link} from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+
 import Reviews from '../../components/blocks/reviews/reviews';
-import {reviews} from '../../components/mocks/reviews-data';
-import {cardsOffer} from '../../components/mocks/place-card-data';
+import { reviews } from '../../components/mocks/reviews-data';
+import { cardsOffer } from '../../components/mocks/place-card-data';
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import FormComment from '../../components/blocks/form-comment/form-comment';
 import Map from '../../components/blocks/map/map';
@@ -87,7 +88,7 @@ function Offer(): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={{width: '80%'}}></span>
+                  <span style={ {width: '80%'} }></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">4.8</span>
@@ -165,18 +166,18 @@ function Offer(): JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{reviews.length}</span></h2>
-                <Reviews items={reviews} />
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ reviews.length }</span></h2>
+                <Reviews items={ reviews } />
                 <FormComment />
               </section>
             </div>
           </div>
-          <Map city={city} points={points} />
+          <Map city={ city } points={ points } />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <PlaceCards cards={cardsOffer} />
+            <PlaceCards cards={ cardsOffer } />
           </section>
         </div>
       </main>

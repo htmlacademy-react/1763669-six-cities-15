@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
+
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
-import {cardsMain} from '../../components/mocks/place-card-data';
+import { cardsMain } from '../../components/mocks/place-card-data';
 import Map from '../../components/blocks/map/map';
 import { city } from '../../components/consts';
 import { points } from '../../components/mocks/points';
@@ -9,7 +10,7 @@ type MainProps = {
   placesCount: number;
 };
 
-function Main({placesCount}: MainProps): JSX.Element {
+function Main({ placesCount }: MainProps): JSX.Element {
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -83,26 +84,26 @@ function Main({placesCount}: MainProps): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{placesCount} places to stay in Amsterdam</b>
+              <b className="places__found">{ placesCount } places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
+                <span className="places__sorting-type" tabIndex={ 0 }>
                   Popular
                   <svg className="places__sorting-arrow" width="7" height="4">
                     <use xlinkHref="#icon-arrow-select"></use>
                   </svg>
                 </span>
                 <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
+                  <li className="places__option places__option--active" tabIndex={ 0 }>Popular</li>
+                  <li className="places__option" tabIndex={ 0 }>Price: low to high</li>
+                  <li className="places__option" tabIndex={ 0 }>Price: high to low</li>
+                  <li className="places__option" tabIndex={ 0 }>Top rated first</li>
                 </ul>
               </form>
-              <PlaceCards cards={cardsMain} />
+              <PlaceCards cards={ cardsMain } />
             </section>
             <div className="cities__right-section">
-              <Map city={city} points={points} activeOfferId={'1'}/>
+              <Map city={ city } points={ points } activeOfferId={ '1' }/>
             </div>
           </div>
         </div>

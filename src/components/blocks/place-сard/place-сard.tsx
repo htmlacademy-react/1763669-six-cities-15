@@ -1,11 +1,12 @@
-import {useState} from 'react';
-import {Link, useLocation} from 'react-router-dom';
-import {PlaceCardProps} from './types';
+import { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
+
+import { PlaceCardProps } from './types';
 import { AppRoute } from '../../consts';
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
 
   const previewWidth = pathname === AppRoute.Favorites.toString() ? 150 : 260;
   const previewHeight = pathname === AppRoute.Favorites.toString() ? 110 : 200;
@@ -28,8 +29,8 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         pathname === AppRoute.Offer.toString() && 'near-places__card',
         pathname === AppRoute.Favorites.toString() && 'favorites__card',
       ])}
-      onMouseOver={() => showActiveCard (props.id)}
-      onMouseLeave={() => resetActiveCard()}
+      onMouseOver={ () => showActiveCard (props.id) }
+      onMouseLeave={ () => resetActiveCard() }
     >
       {props.isPremium && (
         <div className="place-card__mark">
@@ -45,7 +46,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         ])}
       >
         <Link to="#">
-          <img className="place-card__image" src={`img/${props.previewImage}.jpg`} width={previewWidth} height={previewHeight} alt="Place image" />
+          <img className="place-card__image" src={ `img/${props.previewImage}.jpg` } width={ previewWidth } height={ previewHeight } alt="Place image" />
         </Link>
       </div>
       <div
@@ -56,7 +57,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
       >
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
-            <b className="place-card__price-value">&euro;{props.price}</b>
+            <b className="place-card__price-value">&euro;{ props.price }</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button
@@ -75,14 +76,14 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${Math.round(props.rating) * 20}%`}}></span>
+            <span style={ {width: `${Math.round(props.rating) * 20}%`} }></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={props.id}>{props.title}</Link>
+          <Link to={ props.id }>{ props.title }</Link>
         </h2>
-        <p className="place-card__type">{props.type.charAt(0).toUpperCase() + props.type.slice(1)}</p>
+        <p className="place-card__type">{ props.type.charAt(0).toUpperCase() + props.type.slice(1) }</p>
       </div>
     </article>
   );

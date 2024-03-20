@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
-import { Map } from 'leaflet';
+
 import { UseMapProps } from './types';
+
+import { Map } from 'leaflet';
 import leaflet from 'leaflet';
 
 function useMap({ location, containerRef }: UseMapProps): Map | null {
