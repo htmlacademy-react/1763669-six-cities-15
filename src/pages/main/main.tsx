@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import {cardsMain} from '../../components/mocks/place-card-data';
+import Map from '../../components/blocks/map/map';
+import { city } from '../../components/consts';
+import { points } from '../../components/mocks/points';
 
 type MainProps = {
   placesCount: number;
@@ -99,7 +102,7 @@ function Main({placesCount}: MainProps): JSX.Element {
               <PlaceCards cards={cardsMain} />
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <Map city={city} points={points} activeOfferId={'1'}/>
             </div>
           </div>
         </div>
