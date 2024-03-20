@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
+
 import PlaceCard from '../place-сard/place-сard';
 import { cardsFavorites } from '../../mocks/place-card-data';
-import { Link } from 'react-router-dom';
 
 function FavoriteOffers () {
   const favoriteOffersCards = cardsFavorites.filter((card) => card.isFavorite);
@@ -20,7 +21,7 @@ function FavoriteOffers () {
             <div className="favorites__locations locations locations--current">
               <div className="locations__item">
                 <Link className="locations__item-link" to="#">
-                  <span>{cityName}</span>
+                  <span>{ cityName }</span>
                 </Link>
               </div>
             </div>
@@ -28,7 +29,7 @@ function FavoriteOffers () {
               {
                 cardsFavorites.map((card) => {
                   if (card.city.name === cityName) {
-                    return <PlaceCard {...card} key={card.id} />;
+                    return <PlaceCard { ...card } key={ card.id } />;
                   }
                 })
               }

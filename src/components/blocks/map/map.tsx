@@ -1,12 +1,13 @@
-import {useRef, useEffect} from 'react';
-import useMap from './useMap';
-import { MapProps } from './types';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../consts';
-import leaflet from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-import { AppRoute } from '../../consts';
+
+import useMap from './useMap';
+import { MapProps } from './types';
+import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, AppRoute } from '../../consts';
+
+import leaflet from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 const defaultCustomIcon = leaflet.icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -20,8 +21,8 @@ const currentCustomIcon = leaflet.icon({
   iconAnchor: [20, 40]
 });
 
-function Map({city, points, activeOfferId}: MapProps): JSX.Element {
-  const {pathname} = useLocation();
+function Map({ city, points, activeOfferId }: MapProps): JSX.Element {
+  const { pathname } = useLocation();
 
   const mapRef = useRef(null);
   const map = useMap({ location: city.location, containerRef: mapRef });
@@ -48,7 +49,7 @@ function Map({city, points, activeOfferId}: MapProps): JSX.Element {
         pathname === AppRoute.Main.toString() && 'cities__map',
         pathname === AppRoute.Offer.toString() && 'offer__map',
       ])}
-      ref={mapRef}
+      ref={ mapRef }
     />
   );
 }

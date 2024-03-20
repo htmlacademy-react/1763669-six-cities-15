@@ -1,6 +1,6 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
+
 import { STAR_RATING } from '../../consts';
-import { useState } from 'react';
 import { handleChangeProps } from './types';
 
 function FormComment () {
@@ -16,20 +16,20 @@ function FormComment () {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {
-          STAR_RATING.map(({value, id, title}) => (
-            <Fragment key={value}>
+          STAR_RATING.map(({ value, id, title }) => (
+            <Fragment key={ value }>
               <input
                 className="form__rating-input visually-hidden"
                 name="rating"
-                value={value}
-                id={id}
+                value={ value }
+                id={ id }
                 type="radio"
                 onChange={handleChange}
               />
               <label
-                htmlFor={id}
+                htmlFor={ id }
                 className="reviews__rating-label form__rating-label"
-                title={title}
+                title={ title }
               >
                 <svg className="form__star-image" width="37" height="33">
                   <use xlinkHref="#icon-star"></use>
@@ -44,7 +44,7 @@ function FormComment () {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={handleChange}
+        onChange={ handleChange }
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -54,7 +54,7 @@ function FormComment () {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={review.review.length < 50 || review.starRating === 0}
+          disabled={ review.review.length < 50 || review.starRating === 0 }
         >
           Submit
         </button>
