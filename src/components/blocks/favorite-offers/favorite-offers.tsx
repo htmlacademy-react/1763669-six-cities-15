@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../store/useAppDispatch';
 
 import PlaceCard from '../place-сard/place-сard';
 import { offers } from '../../mocks/place-card-data';
 
 function FavoriteOffers () {
-  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+  const favoriteOffers = useAppSelector((state) => state.offersFavorite);
   const favoriteOffersCityNames = favoriteOffers.reduce((cityList: string[], currentOffer) => {
     if (!(cityList.includes(currentOffer.city.name))) {
       cityList.push(currentOffer.city.name);
