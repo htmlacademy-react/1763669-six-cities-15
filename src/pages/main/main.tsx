@@ -9,6 +9,7 @@ function Main(): JSX.Element {
   const currentCity = useAppSelector((state) => state.currentCity);
   const currentOffers = useAppSelector((state) => state.offers);
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
+  const cityIndex = CITIES.findIndex((city) => currentCity === city.id);
 
   return (
     <div className="page page--gray page--main">
@@ -71,7 +72,7 @@ function Main(): JSX.Element {
               <PlaceCards cards={ currentOffers } />
             </section>
             <div className="cities__right-section">
-              <Map city={ CITIES.find((city) => currentCity === city.id) } points={ currentOffers } activeOfferId={ activeOfferId }/>
+              <Map city={ CITIES[cityIndex] } points={ currentOffers } activeOfferId={ activeOfferId }/>
             </div>
           </div>
         </div>
