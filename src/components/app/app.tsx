@@ -1,7 +1,6 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 
-import { AppProps } from './types';
 import { AppRoute, AuthorizationStatus } from '../consts';
 import PrivateRoute from '../blocks/private-route/private-route';
 import Main from '../../pages/main/main';
@@ -10,14 +9,14 @@ import Favorites from '../../pages/favorites/favorites';
 import Offer from '../../pages/offer/offer';
 import NotFound from '../../pages/not-found/not-found';
 
-function App({ placesCount }: AppProps): JSX.Element {
+function App(): JSX.Element {
   return (
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route
             path={ AppRoute.Main }
-            element={ <Main placesCount={ placesCount } /> }
+            element={ <Main /> }
           />
           <Route
             path={ AppRoute.Login }
