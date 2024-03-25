@@ -1,11 +1,12 @@
+import { useAppSelector } from '../../components/store/useAppDispatch';
+
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
-import { offers } from '../../components/mocks/place-card-data';
 import Map from '../../components/blocks/map/map';
 import { CITIES } from '../../components/consts';
 import LocationList from '../../components/blocks/location-list/location-list';
 
 function Main(): JSX.Element {
-  const currentOffers = offers.filter((offer) => offer.city.name === CITIES[0].id);
+  const currentOffers = useAppSelector((state) => state.offers);
 
   return (
     <div className="page page--gray page--main">

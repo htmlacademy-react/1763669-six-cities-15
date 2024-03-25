@@ -1,3 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const activeCardId = createAction('activeCardId');
+import { PlaceCardProps } from '../blocks/place-сard/types';
+
+export const addOffers = createAction<{ offers: PlaceCardProps[] }>('addOffers');

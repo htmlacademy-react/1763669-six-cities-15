@@ -1,14 +1,19 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { activeCardId } from './action';
+import { addOffers } from './action';
+
+import { CITIES } from '../consts';
+import { offers } from '../mocks/place-card-data';
 
 const initialState = {
+  city: CITIES[0],
+  offers: offers.filter((offer) => offer.city.name === CITIES[0].id)
 };
 
 const reducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(activeCardId, () => {
-      // actions
+    .addCase(addOffers, (state, action) => {
+      state.offers = action.payload.offers;
     });
 });
 
-export {reducer};
+export { reducer };
