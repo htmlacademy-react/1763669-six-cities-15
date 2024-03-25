@@ -8,15 +8,15 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
   return (
     <ul className="locations__list tabs__list">
       {cities.map((city: CityProps) => (
-        <li className="locations__item" key={city.link}>
+        <li className="locations__item" key={ city.id }>
           <Link
             className={classNames([
               'locations__item-link tabs__item',
-              city.isActive && 'tabs__item--active'
+              //city.isActive && 'tabs__item--active'
             ])}
-            to={city.link}
+            to={ city.link }
           >
-            <span>{city.name}</span>
+            <span>{ (city.id)[0].toUpperCase() + (city.id).slice(1) }</span>
           </Link>
         </li>
       ))}

@@ -1,7 +1,11 @@
 export type CityProps = {
-  name: string;
+  id: string;
   link: string;
-  isActive: boolean;
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+  };
 }
 
 export type CitiesProps = CityProps[]

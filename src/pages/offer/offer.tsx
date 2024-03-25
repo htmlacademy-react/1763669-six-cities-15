@@ -3,14 +3,15 @@ import { Link } from 'react-router-dom';
 
 import Reviews from '../../components/blocks/reviews/reviews';
 import { reviews } from '../../components/mocks/reviews-data';
-import { cardsOffer } from '../../components/mocks/place-card-data';
+import { offers } from '../../components/mocks/place-card-data';
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import FormComment from '../../components/blocks/form-comment/form-comment';
 import Map from '../../components/blocks/map/map';
-import { city } from '../../components/consts';
-import { points } from '../../components/mocks/points';
+import { CITIES } from '../../components/consts';
 
 function Offer(): JSX.Element {
+  const offersSimilar = offers.filter((offer) => offer.city.name === CITIES[0].id).slice(0, 3);
+
   return (
     <div className="page">
       <Helmet>
@@ -172,12 +173,12 @@ function Offer(): JSX.Element {
               </section>
             </div>
           </div>
-          <Map city={ city } points={ points } />
+          <Map city={ CITIES[0] } points={ offersSimilar } activeOfferId={ '1' } />
         </section>
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <PlaceCards cards={ cardsOffer } />
+            <PlaceCards cards={ offersSimilar } />
           </section>
         </div>
       </main>

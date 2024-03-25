@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 
 import PlaceCard from '../place-сard/place-сard';
-import { cardsFavorites } from '../../mocks/place-card-data';
+import { offers } from '../../mocks/place-card-data';
 
 function FavoriteOffers () {
-  const favoriteOffersCards = cardsFavorites.filter((card) => card.isFavorite);
-  const favoriteOffersCityNames = favoriteOffersCards.reduce((cityList: string[], currentCard) => {
-    if (!(cityList.includes(currentCard.city.name))) {
-      cityList.push(currentCard.city.name);
+  const favoriteOffers = offers.filter((offer) => offer.isFavorite);
+  const favoriteOffersCityNames = favoriteOffers.reduce((cityList: string[], currentOffer) => {
+    if (!(cityList.includes(currentOffer.city.name))) {
+      cityList.push(currentOffer.city.name);
     }
 
     return cityList;
@@ -27,9 +27,9 @@ function FavoriteOffers () {
             </div>
             <div className="favorites__places">
               {
-                cardsFavorites.map((card) => {
-                  if (card.city.name === cityName) {
-                    return <PlaceCard { ...card } key={ card.id } />;
+                offers.map((offer) => {
+                  if (offer.city.name === cityName) {
+                    return <PlaceCard { ...offer } key={ offer.id } />;
                   }
                 })
               }
