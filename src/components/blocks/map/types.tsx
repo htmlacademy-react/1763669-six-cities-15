@@ -1,5 +1,8 @@
+import { PlaceCardProps } from '../place-сard/types';
+
 export type CityProps = {
-  name: string;
+  id: string;
+  link: string;
   location: {
     latitude: number;
     longitude: number;
@@ -7,20 +10,9 @@ export type CityProps = {
   };
 }
 
-type PointProps = {
-  id: string;
-  name: string;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-}
-
-type PointsProps = PointProps[];
-
 export type MapProps = {
   city: CityProps;
-  points: PointsProps;
+  points: PlaceCardProps[];
   activeOfferId?: string | null;
 };
 

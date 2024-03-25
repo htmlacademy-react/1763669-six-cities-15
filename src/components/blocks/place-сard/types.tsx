@@ -3,21 +3,21 @@ export type PlaceCardProps = {
   title: string;
   type: string;
   price: number;
-  city?: {
+  previewImage: string;
+  city: {
     name: string;
-    location?: {
-    latitude?: number;
-    longitude?: number;
-    zoom?: number;
-    };
-  };
-  location?: {
+    location: {
     latitude: number;
     longitude: number;
     zoom: number;
     };
-  isFavorite?: boolean;
-  isPremium?: boolean;
+  };
+  location: {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+    };
+  isFavorite: boolean;
+  isPremium: boolean;
   rating: number;
-  previewImage: string;
 }

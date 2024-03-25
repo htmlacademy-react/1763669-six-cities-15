@@ -18,7 +18,6 @@ function useMap({ location, containerRef }: UseMapProps): Map | null {
         },
         zoom: location.zoom,
       });
-
       leaflet
         .tileLayer(
           'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',

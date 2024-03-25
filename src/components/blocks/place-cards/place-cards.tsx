@@ -14,7 +14,7 @@ function PlaceCards({cards}: PlaceCardsProps): JSX.Element {
       className={classNames([
         'places__list',
         pathname === AppRoute.Main.toString() && 'cities__places-list tabs__content',
-        pathname === AppRoute.Offer.toString() && 'near-places__list',
+        pathname.includes('/offer/') && 'near-places__list',
       ])}
     >
       {cards.map((card: PlaceCardProps) => (
