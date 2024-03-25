@@ -1,9 +1,11 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
+import { useAppDispatch } from '../../store/useAppDispatch';
 
 import { PlaceCardProps } from './types';
 import { AppRoute } from '../../consts';
+import { showActiveCard } from '../../store/action';
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
   const { pathname } = useLocation();
@@ -11,15 +13,17 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   const previewWidth = pathname === AppRoute.Favorites.toString() ? 150 : 260;
   const previewHeight = pathname === AppRoute.Favorites.toString() ? 110 : 200;
 
-  const [, setActiveCardId] = useState('');
+  const dispatch = useAppDispatch();
 
-  const showActiveCard = (id: string) => {
-    setActiveCardId(id);
-  };
+  // const [, setActiveCardId] = useState('');
 
-  const resetActiveCard = () => {
-    setActiveCardId('');
-  };
+  // const showActiveCard = (id: string) => {
+  //   setActiveCardId(id);
+  // };
+
+  // const resetActiveCard = () => {
+  //   setActiveCardId('');
+  // };
 
   return (
     <article
@@ -29,8 +33,8 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         pathname.includes('/offer/') && 'near-places__card',
         pathname === AppRoute.Favorites.toString() && 'favorites__card',
       ])}
-      onMouseOver={ () => showActiveCard (props.id) }
-      onMouseLeave={ () => resetActiveCard() }
+      onMouseOver={ () => dispatch(showActiveCard({ activeOfferId: props.id })) }
+      onMouseLeave={ () => dispatch(showActiveCard({ activeOfferId: '' })) }
     >
       {props.isPremium && (
         <div className="place-card__mark">

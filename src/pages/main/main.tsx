@@ -8,6 +8,7 @@ import LocationList from '../../components/blocks/location-list/location-list';
 function Main(): JSX.Element {
   const currentCity = useAppSelector((state) => state.currentCity);
   const currentOffers = useAppSelector((state) => state.offers);
+  const activeOfferId = useAppSelector((state) => state.activeOfferId);
 
   return (
     <div className="page page--gray page--main">
@@ -70,7 +71,7 @@ function Main(): JSX.Element {
               <PlaceCards cards={ currentOffers } />
             </section>
             <div className="cities__right-section">
-              <Map city={ CITIES.find((city) => city.id === currentCity) } points={ currentOffers } activeOfferId={ '1' }/>
+              <Map city={ CITIES.find((city) => city.id === currentCity) } points={ currentOffers } activeOfferId={ activeOfferId }/>
             </div>
           </div>
         </div>
