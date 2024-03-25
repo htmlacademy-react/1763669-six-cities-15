@@ -6,6 +6,7 @@ import { CITIES } from '../../components/consts';
 import LocationList from '../../components/blocks/location-list/location-list';
 
 function Main(): JSX.Element {
+  const currentCity = useAppSelector((state) => state.currentCity);
   const currentOffers = useAppSelector((state) => state.offers);
 
   return (
@@ -50,7 +51,7 @@ function Main(): JSX.Element {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{ currentOffers.length } places to stay in { (CITIES[0].id)[0].toUpperCase() + (CITIES[0].id).slice(1) }</b>
+              <b className="places__found">{ currentOffers.length } places to stay in { currentCity }</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={ 0 }>
@@ -69,7 +70,7 @@ function Main(): JSX.Element {
               <PlaceCards cards={ currentOffers } />
             </section>
             <div className="cities__right-section">
-              <Map city={ CITIES[0] } points={ currentOffers } activeOfferId={ '1' }/>
+              <Map city={ CITIES.find((city) => city.id === currentCity) } points={ currentOffers } activeOfferId={ '1' }/>
             </div>
           </div>
         </div>
