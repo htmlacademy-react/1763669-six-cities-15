@@ -71,7 +71,7 @@ function Main(): JSX.Element {
               <PlaceCards cards={ currentOffers } />
             </section>
             <div className="cities__right-section">
-              <Map city={ CITIES.find((city) => city.id === currentCity) } points={ currentOffers } activeOfferId={ activeOfferId }/>
+              <Map city={ CITIES.find((city) => currentCity === city.id) } points={ currentOffers } activeOfferId={ activeOfferId }/>
             </div>
           </div>
         </div>

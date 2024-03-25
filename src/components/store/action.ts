@@ -1,6 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
 
-//import { CityProps } from '../blocks/map/types';
 import { PlaceCardProps } from '../blocks/place-сard/types';
 
 export const changeCity = createAction<{currentCity: string}>('changeCity');

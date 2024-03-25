@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { useAppDispatch } from '../../store/useAppDispatch';
@@ -14,16 +13,6 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   const previewHeight = pathname === AppRoute.Favorites.toString() ? 110 : 200;
 
   const dispatch = useAppDispatch();
-
-  // const [, setActiveCardId] = useState('');
-
-  // const showActiveCard = (id: string) => {
-  //   setActiveCardId(id);
-  // };
-
-  // const resetActiveCard = () => {
-  //   setActiveCardId('');
-  // };
 
   return (
     <article

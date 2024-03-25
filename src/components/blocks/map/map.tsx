@@ -4,19 +4,19 @@ import classNames from 'classnames';
 
 import useMap from './useMap';
 import { MapProps } from './types';
-import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT, AppRoute } from '../../consts';
+import { AppRoute } from '../../consts';
 
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const defaultCustomIcon = leaflet.icon({
-  iconUrl: URL_MARKER_DEFAULT,
+  iconUrl: 'img/pin.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
 
 const currentCustomIcon = leaflet.icon({
-  iconUrl: URL_MARKER_CURRENT,
+  iconUrl: 'img/pin-active.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40]
 });
