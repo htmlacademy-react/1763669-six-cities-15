@@ -30,7 +30,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
           <span>Premium</span>
         </div>
       )}
-      <Link to={ `offer/${ props.id }` }>
+      <Link to={ `/offer/${ props.id }` }>
         <div
           className={classNames([
             'place-card__image-wrapper',
