@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addOffers, changeCity, showActiveCard } from './action';
+import { addOffers, changeCity, showActiveCard, updateOffers } from './action';
 
 import { CITIES } from '../consts';
 import { offers } from '../mocks/place-card-data';
@@ -21,6 +21,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(showActiveCard, (state, action) => {
       state.activeOfferId = action.payload.activeOfferId;
+    })
+    .addCase(updateOffers, (state) => {
+      state.offers = offers.filter((offer) => offer.city.name === state.currentCity);
     });
 });
 

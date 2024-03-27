@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { CityProps, CitiesProps } from './types';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../store/useAppDispatch';
-import { changeCity } from '../../store/action';
+import { changeCity, updateOffers } from '../../store/action';
 
 function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
   const dispatch = useAppDispatch();
@@ -23,6 +23,7 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
               (evt) => {
                 evt.preventDefault();
                 dispatch(changeCity({ currentCity: city.id }));
+                dispatch(updateOffers());
               }
             }
           >
