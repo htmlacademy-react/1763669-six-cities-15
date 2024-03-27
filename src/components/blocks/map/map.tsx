@@ -6,7 +6,7 @@ import useMap from './useMap';
 import { MapProps } from './types';
 import { AppRoute } from '../../consts';
 
-import leaflet from 'leaflet';
+import leaflet, { LayerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const defaultCustomIcon = leaflet.icon({
@@ -26,6 +26,15 @@ function Map({ city, points, activeOfferId }: MapProps): JSX.Element {
 
   const mapRef = useRef(null);
   const map = useMap({ location: city.location, containerRef: mapRef });
+  const markerLayer = useRef<LayerGroup>(leaflet.layerGroup());
+
+  useEffect(() => {
+    if (map) {
+      map.setView([city.location.latitude, city.location.longitude], city.location.zoom);
+      markerLayer.current.addTo(map);
+      markerLayer.current.clearLayers();
+    }
+  }, [city, map]);
 
   useEffect(() => {
     if (map) {
