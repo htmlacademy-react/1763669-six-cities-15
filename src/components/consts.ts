@@ -59,7 +59,7 @@ export const CITIES = [
     }
   },
   {
-    id: 'Crussels',
+    id: 'Brussels',
     link: '#',
     location: {
       latitude: 50.846557,
