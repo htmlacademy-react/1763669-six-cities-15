@@ -1,35 +1,96 @@
-// import { useAppSelector } from '../../store/useAppDispatch';
+import { useAppDispatch } from '../../store/useAppDispatch';
+import {
+  sortOffersPriceHightToLow,
+  sortOffersPriceLowToHight,
+  sortOffersRating,
+  updateOffers
+} from '../../store/action';
 
 function Sorting(): JSX.Element {
-  // const currentOffers = useAppSelector((state) => state.offers);
+  const sortingList = document.querySelector('.places__options');
+  const sortTypes = document.querySelectorAll('.places__option');
+  const sortType = document.querySelector('.places__sorting-type');
 
-  // const onClickHandler = (evt) => {
+  const dispatch = useAppDispatch();
 
-  // }
+  const openSortingList = () => {
+    if (sortingList) {
+      sortingList.classList.toggle('places__options--opened');
+    }
+  };
 
-  // По возрастанию цены:
-  // .sort((a, b) => b.price - a.price)
+  const sortOffers = (evt: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    if (sortingList) {
+      sortingList.classList.remove('places__options--opened');
+    }
 
-  // По убыванию цены:
-  // .sort((a, b) => a.price - b.price)
+    sortTypes.forEach((type) => {
+      type.classList.remove('.places__option--active');
+    });
 
-  // По возрастанию рейтинга:
-  // .sort((a, b) => b.rating - a.rating)
+    evt.currentTarget.classList.add('.places__option--active');
+    if (sortType) {
+      sortType.childNodes[0].textContent = evt.currentTarget.textContent;
+
+      switch (sortType.textContent) {
+        case 'Popular':
+          dispatch(updateOffers());
+          break;
+        case 'Price: low to high':
+          dispatch(sortOffersPriceLowToHight());
+          break;
+        case 'Price: high to low':
+          dispatch(sortOffersPriceHightToLow());
+          break;
+        case 'Top rated first':
+          dispatch(sortOffersRating());
+          break;
+        default:
+          break;
+      }
+    }
+  };
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex={ 0 }>
+      <span className="places__sorting-type" tabIndex={ 0 } onClick={ openSortingList }>
         Popular
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
         </svg>
       </span>
-      <ul className="places__options places__options--custom places__options--opened">
-        <li className="places__option places__option--active" tabIndex={ 0 }>Popular</li>
-        <li className="places__option" tabIndex={ 0 }>Price: low to high</li>
-        <li className="places__option" tabIndex={ 0 }>Price: high to low</li>
-        <li className="places__option" tabIndex={ 0 }>Top rated first</li>
+      <ul
+        className="places__options places__options--custom"
+      >
+        <li
+          className="places__option places__option--active"
+          tabIndex={ 0 }
+          onClick={ sortOffers }
+        >
+          Popular
+        </li>
+        <li
+          className="places__option"
+          tabIndex={ 0 }
+          onClick={ sortOffers }
+        >
+          Price: low to high
+        </li>
+        <li
+          className="places__option"
+          tabIndex={ 0 }
+          onClick={ sortOffers }
+        >
+          Price: high to low
+        </li>
+        <li
+          className="places__option"
+          tabIndex={ 0 }
+          onClick={ sortOffers }
+        >
+          Top rated first
+        </li>
       </ul>
     </form>
   );
