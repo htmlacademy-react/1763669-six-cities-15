@@ -4,6 +4,7 @@ import { PlaceCardProps } from '../components/blocks/place-сard/types';
 export type initialStateProps = {
   currentCity: string;
   offers: PlaceCardProps[];
+  currentOffers: PlaceCardProps[];
   activeOfferId: string;
   authorizationStatus: string;
 };
