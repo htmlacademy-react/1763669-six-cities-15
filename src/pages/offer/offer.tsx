@@ -1,16 +1,16 @@
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 
+import { useAppSelector } from '../../store/useAppDispatch';
 import Reviews from '../../components/blocks/reviews/reviews';
 import { reviews } from '../../components/mocks/reviews-data';
-import { offers } from '../../components/mocks/place-card-data';
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import FormComment from '../../components/blocks/form-comment/form-comment';
 import Map from '../../components/blocks/map/map';
 import { CITIES } from '../../components/consts';
 
 function Offer(): JSX.Element {
-  const offersSimilar = offers.filter((offer) => offer.city.name === CITIES[0].id).slice(0, 3);
+  const offersSimilar = useAppSelector((state) => state.offers).filter((offer) => offer.city.name === CITIES[0].id).slice(0, 3);
 
   return (
     <div className="page">

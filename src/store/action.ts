@@ -4,7 +4,7 @@ import { PlaceCardProps } from '../components/blocks/place-сard/types';
 import { AuthorizationStatus } from '../components/consts';
 
 const changeCity = createAction<{currentCity: string}>('changeCity');
-const addOffers = createAction<{ offers: PlaceCardProps[] }>('addOffers');
+const loadOffers = createAction<{ offers: PlaceCardProps[] }>('loadOffers');
 const showActiveCard = createAction<{ activeOfferId: string }>('showActiveCard');
 const updateOffers = createAction('updateOffers');
 
@@ -17,7 +17,7 @@ const requireAuthorization = createAction<AuthorizationStatus>('requireAuthoriza
 
 export {
   changeCity,
-  addOffers,
+  loadOffers,
   showActiveCard,
   updateOffers,
   sortOffersPopular,

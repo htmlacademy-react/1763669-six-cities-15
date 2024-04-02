@@ -1,17 +1,23 @@
-export enum AppRoute {
+enum AppRoute {
   Main = '/',
   Login = '/login',
   Favorites = '/favorites',
   Offer = '/offer/:id',
 }
 
-export enum AuthorizationStatus {
+const enum APIRoute {
+  Offers = '/offers',
+  Login = '/login',
+  Logout = '/logout'
+}
+
+enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
 
-export const STAR_RATING = [
+const STAR_RATING = [
   {
     value: '5',
     id: '5-stars',
@@ -39,7 +45,7 @@ export const STAR_RATING = [
   },
 ];
 
-export const CITIES = [
+const CITIES = [
   {
     id: 'Paris',
     link: '#',
@@ -95,4 +101,13 @@ export const CITIES = [
     }
   },
 ];
+
+export {
+  AppRoute,
+  APIRoute,
+  AuthorizationStatus,
+  STAR_RATING,
+  CITIES,
+};
+
 
