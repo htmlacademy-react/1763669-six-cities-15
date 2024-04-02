@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../store/useAppDispatch';
+import { useAppSelector } from '../../../store/useAppDispatch';
 
 import PlaceCard from '../place-сard/place-сard';
-import { offers } from '../../mocks/place-card-data';
 
 function FavoriteOffers () {
-  const favoriteOffers = useAppSelector((state) => state.offersFavorite);
+  const favoriteOffers = useAppSelector((state) => state.offers).filter((offer) => offer.isFavorite);
   const favoriteOffersCityNames = favoriteOffers.reduce((cityList: string[], currentOffer) => {
     if (!(cityList.includes(currentOffer.city.name))) {
       cityList.push(currentOffer.city.name);
@@ -28,7 +27,7 @@ function FavoriteOffers () {
             </div>
             <div className="favorites__places">
               {
-                offers.map((offer) => {
+                favoriteOffers.map((offer) => {
                   if (offer.city.name === cityName) {
                     return <PlaceCard { ...offer } key={ offer.id } />;
                   }

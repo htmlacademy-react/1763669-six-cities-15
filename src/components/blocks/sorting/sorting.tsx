@@ -1,10 +1,10 @@
-import { useAppDispatch } from '../../store/useAppDispatch';
+import { useAppDispatch } from '../../../store/useAppDispatch';
 import {
   sortOffersPriceHightToLow,
   sortOffersPriceLowToHight,
   sortOffersRating,
-  updateOffers
-} from '../../store/action';
+  sortOffersPopular,
+} from '../../../store/action';
 
 function Sorting(): JSX.Element {
   const sortingList = document.querySelector('.places__options');
@@ -33,9 +33,6 @@ function Sorting(): JSX.Element {
       sortType.childNodes[0].textContent = evt.currentTarget.textContent;
 
       switch (sortType.textContent) {
-        case 'Popular':
-          dispatch(updateOffers());
-          break;
         case 'Price: low to high':
           dispatch(sortOffersPriceLowToHight());
           break;
@@ -46,6 +43,7 @@ function Sorting(): JSX.Element {
           dispatch(sortOffersRating());
           break;
         default:
+          dispatch(sortOffersPopular());
           break;
       }
     }

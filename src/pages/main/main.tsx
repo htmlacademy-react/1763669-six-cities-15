@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../components/store/useAppDispatch';
+import { useAppSelector } from '../../store/useAppDispatch';
 
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import Map from '../../components/blocks/map/map';
@@ -8,7 +8,7 @@ import Sorting from '../../components/blocks/sorting/sorting';
 
 function Main(): JSX.Element {
   const currentCity = useAppSelector((state) => state.currentCity);
-  const currentOffers = useAppSelector((state) => state.offers);
+  const currentOffers = useAppSelector((state) => state.currentOffers);
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
   const cityIndex = CITIES.findIndex((city) => currentCity === city.id);
 

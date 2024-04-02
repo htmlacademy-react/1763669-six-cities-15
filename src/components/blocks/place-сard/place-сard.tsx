@@ -1,10 +1,10 @@
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-import { useAppDispatch } from '../../store/useAppDispatch';
+import { useAppDispatch } from '../../../store/useAppDispatch';
 
 import { PlaceCardProps } from './types';
 import { AppRoute } from '../../consts';
-import { showActiveCard } from '../../store/action';
+import { showActiveCard } from '../../../store/action';
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
   const { pathname } = useLocation();
