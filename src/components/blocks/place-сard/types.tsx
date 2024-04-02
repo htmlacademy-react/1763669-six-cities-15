@@ -20,4 +20,14 @@ export type PlaceCardProps = {
   isFavorite: boolean;
   isPremium: boolean;
   rating: number;
+  description: string;
+  bedrooms: string;
+  goods: string[];
+  host: {
+    name: string;
+    avatarUrl: string;
+    isPro: boolean;
+  };
+  images: string[];
+  maxAdults: number;
 }
