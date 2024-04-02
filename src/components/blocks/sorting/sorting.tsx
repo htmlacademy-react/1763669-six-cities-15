@@ -1,10 +1,10 @@
-import { useAppDispatch } from '../../store/useAppDispatch';
+import { useAppDispatch } from '../../../store/useAppDispatch';
 import {
   sortOffersPriceHightToLow,
   sortOffersPriceLowToHight,
   sortOffersRating,
   updateOffers
-} from '../../store/action';
+} from '../../../store/action';
 
 function Sorting(): JSX.Element {
   const sortingList = document.querySelector('.places__options');

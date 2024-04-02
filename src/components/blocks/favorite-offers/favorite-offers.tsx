@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../store/useAppDispatch';
+import { useAppSelector } from '../../../store/useAppDispatch';
 
 import PlaceCard from '../place-сard/place-сard';
 import { offers } from '../../mocks/place-card-data';

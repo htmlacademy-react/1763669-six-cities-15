@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../components/store/useAppDispatch';
+import { useAppSelector } from '../../store/useAppDispatch';
 
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import Map from '../../components/blocks/map/map';

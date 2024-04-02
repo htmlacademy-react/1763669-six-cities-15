@@ -9,8 +9,8 @@ import {
   sortOffersRating,
 } from './action';
 
-import { CITIES } from '../consts';
-import { offers } from '../mocks/place-card-data';
+import { CITIES } from '../components/consts';
+import { offers } from '../components/mocks/place-card-data';
 
 const initialState = {
   currentCity: CITIES[0].id,
