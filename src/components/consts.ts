@@ -11,7 +11,7 @@ const enum APIRoute {
   Logout = '/logout'
 }
 
-enum AuthorizationStatus {
+const enum AuthorizationStatus {
   Auth = 'AUTH',
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',

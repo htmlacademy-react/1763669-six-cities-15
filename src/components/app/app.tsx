@@ -12,10 +12,10 @@ import NotFound from '../../pages/not-found/not-found';
 import Spinner from '../blocks/spinner/spinner';
 
 function App(): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus) as AuthorizationStatus;
   const isDataLoading = useAppSelector((state) => state.isDataLoading);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown.toString() || isDataLoading) {
+  if (authorizationStatus === AuthorizationStatus.Unknown || isDataLoading) {
     return (
       <Spinner />
     );
@@ -36,7 +36,7 @@ function App(): JSX.Element {
           <Route
             path={ AppRoute.Favorites }
             element={
-              <PrivateRoute authorizationStatus={ AuthorizationStatus.Auth }>
+              <PrivateRoute authorizationStatus={ authorizationStatus }>
                 <Favorites />
               </PrivateRoute>
             }

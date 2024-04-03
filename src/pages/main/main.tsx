@@ -1,16 +1,20 @@
 import { useAppSelector } from '../../store/useAppDispatch';
+import { Link } from 'react-router-dom';
 
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import Map from '../../components/blocks/map/map';
-import { CITIES } from '../../components/consts';
+import { CITIES, AppRoute } from '../../components/consts';
 import LocationList from '../../components/blocks/location-list/location-list';
 import Sorting from '../../components/blocks/sorting/sorting';
+import { AuthorizationStatus } from '../../components/consts';
 
 function Main(): JSX.Element {
   const currentCity = useAppSelector((state) => state.currentCity);
   const currentOffers = useAppSelector((state) => state.currentOffers);
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
   const cityIndex = CITIES.findIndex((city) => currentCity === city.id);
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus) as AuthorizationStatus;
 
   return (
     <div className="page page--gray page--main">
@@ -24,18 +28,25 @@ function Main(): JSX.Element {
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
-                  </a>
-                </li>
+                {authorizationStatus === AuthorizationStatus.Auth &&
+                  <li className="header__nav-item user">
+                    <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.Favorites }>
+                      <div className="header__avatar-wrapper user__avatar-wrapper">
+                      </div>
+                      <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                      <span className="header__favorite-count">3</span>
+                    </Link>
+                  </li>}
                 <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
-                  </a>
+                  <Link className="header__nav-link" to={ AppRoute.Login }>
+                    {authorizationStatus === AuthorizationStatus.Auth ?
+                      <span className="header__signout">Sign out</span> :
+                      <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.Login }>
+                        <div className="header__avatar-wrapper user__avatar-wrapper">
+                        </div>
+                        <span className="header__login">Sign in</span>
+                      </Link>}
+                  </Link>
                 </li>
               </ul>
             </nav>

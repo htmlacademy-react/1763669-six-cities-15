@@ -9,13 +9,15 @@ import { reviews } from '../../components/mocks/reviews-data';
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import FormComment from '../../components/blocks/form-comment/form-comment';
 import Map from '../../components/blocks/map/map';
-import { CITIES } from '../../components/consts';
+import { CITIES, AppRoute, AuthorizationStatus } from '../../components/consts';
 
 function Offer(): JSX.Element {
   const { pathname } = useLocation();
   const currentOfferId = pathname.replace('/offer/', '');
   const currentOffer = useAppSelector((state) => state.offers.find((offer) => offer.id === currentOfferId));
   const offersSimilar = useAppSelector((state) => state.offers).filter((offer) => offer.city.name === CITIES[0].id).slice(0, 3);
+
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus) as AuthorizationStatus;
 
   return (
     <div className="page">
@@ -27,23 +29,30 @@ function Offer(): JSX.Element {
         <div className="container">
           <div className="header__wrapper">
             <div className="header__left">
-              <Link className="header__logo-link" to="/">
+              <Link className="header__logo-link" to={ AppRoute.Main }>
                 <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
               </Link>
             </div>
             <nav className="header__nav">
               <ul className="header__nav-list">
-                <li className="header__nav-item user">
-                  <a className="header__nav-link header__nav-link--profile" href="#">
-                    <div className="header__avatar-wrapper user__avatar-wrapper">
-                    </div>
-                    <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                    <span className="header__favorite-count">3</span>
-                  </a>
-                </li>
+                {authorizationStatus === AuthorizationStatus.Auth &&
+                    <li className="header__nav-item user">
+                      <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.Favorites }>
+                        <div className="header__avatar-wrapper user__avatar-wrapper">
+                        </div>
+                        <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                        <span className="header__favorite-count">3</span>
+                      </Link>
+                    </li>}
                 <li className="header__nav-item">
                   <a className="header__nav-link" href="#">
-                    <span className="header__signout">Sign out</span>
+                    {authorizationStatus === AuthorizationStatus.Auth ?
+                      <span className="header__signout">Sign out</span> :
+                      <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.Login }>
+                        <div className="header__avatar-wrapper user__avatar-wrapper">
+                        </div>
+                        <span className="header__login">Sign in</span>
+                      </Link>}
                   </a>
                 </li>
               </ul>
