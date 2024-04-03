@@ -14,6 +14,7 @@ const sortOffersPriceHightToLow = createAction('sortOffersPriceHightToLow');
 const sortOffersRating = createAction('sortOffersRating');
 
 const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
+const setSpinner = createAction<boolean>('setSpinner');
 
 export {
   changeCity,
@@ -25,4 +26,5 @@ export {
   sortOffersPriceHightToLow,
   sortOffersRating,
   requireAuthorization,
+  setSpinner
 };

@@ -7,6 +7,7 @@ export type initialStateProps = {
   currentOffers: PlaceCardProps[];
   activeOfferId: string;
   authorizationStatus: string;
+  isDataLoading: boolean;
 };
 
 export type State = ReturnType<typeof store.getState>;

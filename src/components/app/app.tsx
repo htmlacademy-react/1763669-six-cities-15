@@ -1,5 +1,6 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { useAppSelector } from '../../store/useAppDispatch';
 
 import { AppRoute, AuthorizationStatus } from '../consts';
 import PrivateRoute from '../blocks/private-route/private-route';
@@ -8,8 +9,18 @@ import Login from '../../pages/login/login';
 import Favorites from '../../pages/favorites/favorites';
 import Offer from '../../pages/offer/offer';
 import NotFound from '../../pages/not-found/not-found';
+import Spinner from '../blocks/spinner/spinner';
 
 function App(): JSX.Element {
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+
+  if (authorizationStatus === AuthorizationStatus.Unknown.toString() || isDataLoading) {
+    return (
+      <Spinner />
+    );
+  }
+
   return (
     <HelmetProvider>
       <BrowserRouter>

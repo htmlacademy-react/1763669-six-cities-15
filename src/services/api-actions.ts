@@ -6,7 +6,7 @@ import { dropToken, saveToken } from '../store/token';
 import { AuthData, UserData } from './types';
 import { PlaceCardProps } from '../components/blocks/place-сard/types';
 import { AppDispatch } from '../store/types';
-import { loadOffers, requireAuthorization } from '../store/action';
+import { loadOffers, requireAuthorization, setSpinner } from '../store/action';
 
 type ApiThunkConfigObject = {
   dispatch: AppDispatch;
@@ -16,7 +16,9 @@ type ApiThunkConfigObject = {
 const fetchOffersAction = createAsyncThunk<void, undefined, ApiThunkConfigObject>(
   'fetchOffers',
   async (_arg, { dispatch, extra: api }) => {
+    dispatch(setSpinner(true));
     const { data } = await api.get<PlaceCardProps[]>(APIRoute.Offers);
+    dispatch(setSpinner(false));
     dispatch(loadOffers({ offers: data }));
   }
 );
