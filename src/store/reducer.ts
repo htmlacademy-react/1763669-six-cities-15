@@ -11,6 +11,7 @@ import {
   requireAuthorization,
   setSpinner,
   setUserData,
+  clearUserData,
 } from './action';
 
 import { AuthorizationStatus } from '../components/consts';
@@ -62,6 +63,15 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setUserData, (state, action) => {
       state.userData = action.payload;
+    })
+    .addCase(clearUserData, (state) => {
+      state.userData = {
+        name: '',
+        avatarUrl: '',
+        isPro: false,
+        email: '',
+        token: '',
+      };
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;

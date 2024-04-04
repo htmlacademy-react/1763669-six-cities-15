@@ -13,6 +13,13 @@ function Header({ location }: { location: Location }): JSX.Element {
 
   const dispatch = useAppDispatch();
 
+  const handleLogout = (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    if (AuthorizationStatus.Auth) {
+      evt.preventDefault();
+      dispatch(logoutAction());
+    }
+  };
+
   return(
 
     <header className="header">
@@ -42,24 +49,20 @@ function Header({ location }: { location: Location }): JSX.Element {
                   }
 
                   <li className="header__nav-item">
-                    <Link
-                      className="header__nav-link"
-                      to={ AuthorizationStatus.Auth ? AppRoute.Favorites : AppRoute.Main }
-                      onClick={ (evt) => {
-                        if (AuthorizationStatus.Auth) {
-                          evt.preventDefault();
-                          dispatch(logoutAction());
-                        }
-                      } }
-                    >
-                      {authorizationStatus === AuthorizationStatus.Auth ?
-                        <span className="header__signout">Sign out</span> :
-                        <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.Login }>
-                          <div className="header__avatar-wrapper user__avatar-wrapper">
-                          </div>
+                    {
+                      authorizationStatus === AuthorizationStatus.Auth ?
+                        <Link
+                          className="header__nav-link"
+                          to={ AppRoute.Main }
+                          onClick={ handleLogout }
+                        >
+                          <span className="header__signout">Sign out</span>
+                        </Link> :
+                        <Link className="header__nav-link" to={ AppRoute.Login }>
+                          <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                           <span className="header__login">Sign in</span>
-                        </Link>}
-                    </Link>
+                        </Link>
+                    }
                   </li>
                 </ul>
               </nav>

@@ -6,7 +6,7 @@ import { dropToken, saveToken } from '../store/token';
 import { AuthData, UserData } from './types';
 import { PlaceCardProps } from '../components/blocks/place-сard/types';
 import { AppDispatch } from '../store/types';
-import { loadOffers, requireAuthorization, setSpinner, setUserData } from '../store/action';
+import { clearUserData, loadOffers, requireAuthorization, setSpinner, setUserData } from '../store/action';
 
 type ApiThunkConfigObject = {
   dispatch: AppDispatch;
@@ -50,6 +50,7 @@ const logoutAction = createAsyncThunk<void, undefined, ApiThunkConfigObject>(
   async (_arg, { dispatch, extra: api }) => {
     await api.delete(APIRoute.Logout);
     dropToken();
+    dispatch(clearUserData());
     dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
   }
 );

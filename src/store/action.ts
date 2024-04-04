@@ -17,6 +17,7 @@ const sortOffersRating = createAction('sortOffersRating');
 const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
 const setSpinner = createAction<boolean>('setSpinner');
 const setUserData = createAction<UserData>('setUserData');
+const clearUserData = createAction('clearUserData');
 
 export {
   changeCity,
@@ -30,4 +31,5 @@ export {
   requireAuthorization,
   setSpinner,
   setUserData,
+  clearUserData,
 };
