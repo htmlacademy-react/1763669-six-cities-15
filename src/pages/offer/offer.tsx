@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -9,15 +8,16 @@ import { reviews } from '../../components/mocks/reviews-data';
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import FormComment from '../../components/blocks/form-comment/form-comment';
 import Map from '../../components/blocks/map/map';
-import { CITIES, AppRoute, AuthorizationStatus } from '../../components/consts';
+import { CITIES } from '../../components/consts';
+import Header from '../../components/layout/header/header';
 
 function Offer(): JSX.Element {
+  const location = useLocation();
+
   const { pathname } = useLocation();
   const currentOfferId = pathname.replace('/offer/', '');
   const currentOffer = useAppSelector((state) => state.offers.find((offer) => offer.id === currentOfferId));
   const offersSimilar = useAppSelector((state) => state.offers).filter((offer) => offer.city.name === CITIES[0].id).slice(0, 3);
-
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus) as AuthorizationStatus;
 
   return (
     <div className="page">
@@ -25,41 +25,7 @@ function Offer(): JSX.Element {
         <title>6 cities: offer</title>
       </Helmet>
 
-      <header className="header">
-        <div className="container">
-          <div className="header__wrapper">
-            <div className="header__left">
-              <Link className="header__logo-link" to={ AppRoute.Main }>
-                <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
-              </Link>
-            </div>
-            <nav className="header__nav">
-              <ul className="header__nav-list">
-                {authorizationStatus === AuthorizationStatus.Auth &&
-                    <li className="header__nav-item user">
-                      <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.Favorites }>
-                        <div className="header__avatar-wrapper user__avatar-wrapper">
-                        </div>
-                        <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
-                        <span className="header__favorite-count">3</span>
-                      </Link>
-                    </li>}
-                <li className="header__nav-item">
-                  <a className="header__nav-link" href="#">
-                    {authorizationStatus === AuthorizationStatus.Auth ?
-                      <span className="header__signout">Sign out</span> :
-                      <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.Login }>
-                        <div className="header__avatar-wrapper user__avatar-wrapper">
-                        </div>
-                        <span className="header__login">Sign in</span>
-                      </Link>}
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header location={ location }/>
 
       <main className="page__main page__main--offer">
         <section className="offer">
