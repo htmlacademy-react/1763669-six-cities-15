@@ -9,6 +9,9 @@ import {
   sortOffersPriceHightToLow,
   sortOffersRating,
   requireAuthorization,
+  setSpinner,
+  setUserData,
+  clearUserData,
 } from './action';
 
 import { AuthorizationStatus } from '../components/consts';
@@ -20,7 +23,15 @@ const initialState: initialStateProps = {
   offers: [],
   currentOffers: [],
   activeOfferId: '',
+  userData: {
+    name: '',
+    avatarUrl: '',
+    isPro: false,
+    email: '',
+    token: '',
+  },
   authorizationStatus: AuthorizationStatus.Unknown,
+  isDataLoading: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -50,8 +61,23 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(sortOffersRating, (state) => {
       state.currentOffers = state.currentOffers.slice().sort((a, b) => b.rating - a.rating);
     })
+    .addCase(setUserData, (state, action) => {
+      state.userData = action.payload;
+    })
+    .addCase(clearUserData, (state) => {
+      state.userData = {
+        name: '',
+        avatarUrl: '',
+        isPro: false,
+        email: '',
+        token: '',
+      };
+    })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
+    })
+    .addCase(setSpinner, (state, action) => {
+      state.isDataLoading = action.payload;
     });
 });
 
