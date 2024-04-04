@@ -1,6 +1,8 @@
 import { useAppSelector } from '../../store/useAppDispatch';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { useAppDispatch } from '../../store/useAppDispatch';
+import { logoutAction } from '../../services/api-actions';
 
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import Map from '../../components/blocks/map/map';
@@ -16,6 +18,8 @@ function Main(): JSX.Element {
   const cityIndex = CITIES.findIndex((city) => currentCity === city.id);
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus) as AuthorizationStatus;
+
+  const dispatch = useAppDispatch();
 
   return (
     <div className="page page--gray page--main">
@@ -39,7 +43,16 @@ function Main(): JSX.Element {
                     </Link>
                   </li>}
                 <li className="header__nav-item">
-                  <Link className="header__nav-link" to={ AppRoute.Login }>
+                  <Link
+                    className="header__nav-link"
+                    to={ AuthorizationStatus.Auth ? AppRoute.Favorites : AppRoute.Main }
+                    onClick={ (evt) => {
+                      if (AuthorizationStatus.Auth) {
+                        evt.preventDefault();
+                        dispatch(logoutAction());
+                      }
+                    } }
+                  >
                     {authorizationStatus === AuthorizationStatus.Auth ?
                       <span className="header__signout">Sign out</span> :
                       <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.Login }>
