@@ -21,7 +21,6 @@ function Header({ location }: { location: Location }): JSX.Element {
   };
 
   return(
-
     <header className="header">
       <div className="container">
         <div className="header__wrapper">
@@ -30,10 +29,9 @@ function Header({ location }: { location: Location }): JSX.Element {
               <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41" />
             </Link>
           </div>
-
           {
             (pathname === AppRoute.Main.toString() ||
-            pathname === AppRoute.Favorites.toString() ||
+            pathname.includes('/offer/') ||
             pathname === AppRoute.Offer.toString()) &&
               <nav className="header__nav">
                 <ul className="header__nav-list">
@@ -47,7 +45,6 @@ function Header({ location }: { location: Location }): JSX.Element {
                         </Link>
                       </li>
                   }
-
                   <li className="header__nav-item">
                     {
                       authorizationStatus === AuthorizationStatus.Auth ?
