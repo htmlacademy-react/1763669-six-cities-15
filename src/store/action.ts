@@ -2,6 +2,7 @@ import { createAction } from '@reduxjs/toolkit';
 
 import { PlaceCardProps } from '../components/blocks/place-сard/types';
 import { AuthorizationStatus } from '../components/consts';
+import { UserData } from '../services/types';
 
 const changeCity = createAction<{currentCity: string}>('changeCity');
 const loadOffers = createAction<{ offers: PlaceCardProps[] }>('loadOffers');
@@ -15,6 +16,7 @@ const sortOffersRating = createAction('sortOffersRating');
 
 const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
 const setSpinner = createAction<boolean>('setSpinner');
+const setUserData = createAction<UserData>('setUserData');
 
 export {
   changeCity,
@@ -26,5 +28,6 @@ export {
   sortOffersPriceHightToLow,
   sortOffersRating,
   requireAuthorization,
-  setSpinner
+  setSpinner,
+  setUserData,
 };
