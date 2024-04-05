@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 
 import { State } from '../store/types';
-import { loadOffer } from '../store/action';
+import { loadOffer, loadNearPlaces } from '../store/action';
 
 import { APIRoute, AuthorizationStatus } from '../components/consts';
 import { dropToken, saveToken } from '../store/token';
@@ -37,6 +37,18 @@ export const fetchOffer = createAsyncThunk<void, string, {
     const { data } = await api.get<PlaceCardProps>(`${APIRoute.Offers}/${offerId}`);
     dispatch(loadOffer(data));
   }
+);
+
+export const fetchNearPlaces = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchNearPlaces',
+  async (offerId, { dispatch, extra: api }) => {
+    const { data } = await api.get<PlaceCardProps[]>(`${APIRoute.Offers}/${offerId}/nearby`);
+    dispatch(loadNearPlaces(data));
+  },
 );
 
 const checkAuthAction = createAsyncThunk<void, undefined, ApiThunkConfigObject>(

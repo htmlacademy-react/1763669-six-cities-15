@@ -8,7 +8,8 @@ const changeCity = createAction<{currentCity: string}>('changeCity');
 const loadOffers = createAction<{ offers: PlaceCardProps[] }>('loadOffers');
 const showActiveCard = createAction<{ activeOfferId: string }>('showActiveCard');
 const updateOffers = createAction('updateOffers');
-const loadOffer = createAction<PlaceCardProps>('data/setActiveOffer');
+const loadOffer = createAction<PlaceCardProps>('setActiveOffer');
+const loadNearPlaces = createAction<PlaceCardProps[]>('loadNearPlaces');
 
 const sortOffersPopular = createAction('sortOffersPopular');
 const sortOffersPriceLowToHight = createAction('sortOffersPriceLowToHight');
@@ -26,6 +27,7 @@ export {
   showActiveCard,
   updateOffers,
   loadOffer,
+  loadNearPlaces,
   sortOffersPopular,
   sortOffersPriceLowToHight,
   sortOffersPriceHightToLow,

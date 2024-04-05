@@ -15,7 +15,7 @@ function Main(): JSX.Element {
   const currentCity = useAppSelector((state) => state.currentCity);
   const currentOffers = useAppSelector((state) => state.currentOffers);
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
-  const cityIndex = CITIES.findIndex((city) => currentCity === city.id);
+  const cityIndex = CITIES.findIndex((city) => currentCity === city.name);
 
   return (
     <div className="page page--gray page--main">

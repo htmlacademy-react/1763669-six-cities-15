@@ -8,6 +8,7 @@ export type initialStateProps = {
   currentOffers: PlaceCardProps[];
   activeOfferId: string;
   activeOffer: PlaceCardProps | null;
+  nearPlaces: PlaceCardProps[] | null;
   userData: UserData;
   authorizationStatus: string;
   isDataLoading: boolean;
