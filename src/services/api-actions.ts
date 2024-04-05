@@ -1,12 +1,25 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 
+import { State } from '../store/types';
+import { loadOffer, loadNearPlaces } from '../store/action';
+
 import { APIRoute, AuthorizationStatus } from '../components/consts';
 import { dropToken, saveToken } from '../store/token';
 import { AuthData, UserData } from './types';
 import { PlaceCardProps } from '../components/blocks/place-сard/types';
 import { AppDispatch } from '../store/types';
-import { clearUserData, loadOffers, requireAuthorization, setSpinner, setUserData } from '../store/action';
+import {
+  clearUserData,
+  loadOffers,
+  requireAuthorization,
+  setSpinner,
+  setUserData,
+  loadReviews,
+  addReview
+} from '../store/action';
+import { ReviewProps } from '../components/blocks/review/types';
+import { CommentProps } from '../components/blocks/form-comment/types';
 
 type ApiThunkConfigObject = {
   dispatch: AppDispatch;
@@ -20,6 +33,43 @@ const fetchOffersAction = createAsyncThunk<void, undefined, ApiThunkConfigObject
     const { data } = await api.get<PlaceCardProps[]>(APIRoute.Offers);
     dispatch(setSpinner(false));
     dispatch(loadOffers({ offers: data }));
+  }
+);
+
+const fetchOffer = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}
+>(
+  'fetchOffer',
+  async (offerId, { dispatch, extra: api }) => {
+    const { data } = await api.get<PlaceCardProps>(`${APIRoute.Offers}/${offerId}`);
+    dispatch(loadOffer(data));
+  }
+);
+
+const fetchNearPlaces = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'fetchNearPlaces',
+  async (offerId, { dispatch, extra: api }) => {
+    const { data } = await api.get<PlaceCardProps[]>(`${APIRoute.Offers}/${offerId}/nearby`);
+    dispatch(loadNearPlaces(data));
+  },
+);
+
+const fetchReviews = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchReviews',
+  async (offerId, { dispatch, extra: api }) => {
+    const { data } = await api.get<ReviewProps[]>(`${APIRoute.Comments}/${offerId}`);
+    dispatch(loadReviews(data));
   }
 );
 
@@ -55,4 +105,25 @@ const logoutAction = createAsyncThunk<void, undefined, ApiThunkConfigObject>(
   }
 );
 
-export { checkAuthAction, fetchOffersAction, loginAction, logoutAction };
+const sendReview = createAsyncThunk<void, { reviewData: CommentProps; offerId: string }, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'sendReview',
+  async ({ reviewData, offerId }, { dispatch, extra: api }) => {
+    const { data } = await api.post<ReviewProps>(`${APIRoute.Comments}/${offerId}`, reviewData);
+    dispatch(addReview(data));
+  },
+);
+
+export {
+  fetchOffer,
+  fetchNearPlaces,
+  fetchReviews,
+  checkAuthAction,
+  fetchOffersAction,
+  loginAction,
+  logoutAction,
+  sendReview,
+};

@@ -1,7 +1,13 @@
 import { Fragment, useState } from 'react';
 
+import { useParams } from 'react-router-dom';
+import { useAppDispatch } from '../../../store/useAppDispatch';
+
+import { FormEvent } from 'react';
+import { sendReview } from '../../../services/api-actions';
+
 import { STAR_RATING } from '../../consts';
-import { handleChangeProps } from './types';
+import { CommentProps, handleChangeProps } from './types';
 
 function FormComment () {
   const [review, setReview] = useState({starRating: 0, review: ''});
@@ -11,8 +17,36 @@ function FormComment () {
     setReview({...review, [name]: value});
   };
 
+  const params = useParams();
+  const offerId = params.id || '';
+
+  const dispatch = useAppDispatch();
+
+  const resetForm = () => {
+    setReview({
+      starRating: 0,
+      review: '',
+    });
+  };
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+
+    const reviewData: CommentProps = {
+      comment: review.review,
+      rating: Number(review.starRating),
+    };
+    dispatch(sendReview({ reviewData, offerId }));
+    resetForm();
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form
+      className="reviews__form form"
+      action="#"
+      method="post"
+      onSubmit={ handleSubmit }
+    >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {
@@ -20,7 +54,7 @@ function FormComment () {
             <Fragment key={ value }>
               <input
                 className="form__rating-input visually-hidden"
-                name="rating"
+                name="starRating"
                 value={ value }
                 id={ id }
                 type="radio"

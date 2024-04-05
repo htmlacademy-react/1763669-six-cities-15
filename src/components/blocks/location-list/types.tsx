@@ -1,6 +1,5 @@
 export type CityProps = {
-  id: string;
-  link: string;
+  name: string;
   location: {
     latitude: number;
     longitude: number;

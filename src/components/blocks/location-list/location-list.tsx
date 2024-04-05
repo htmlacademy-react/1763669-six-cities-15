@@ -28,23 +28,25 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
   return (
     <ul className="locations__list tabs__list">
       {cities.map((city: CityProps) => (
-        <li className="locations__item" key={ city.id }>
+        <li className="locations__item" key={ city.name }>
           <Link
             className={classNames([
               'locations__item-link tabs__item',
-              { 'tabs__item--active': city.id === currentCity }
+              city.name === currentCity ? 'tabs__item--active' : '',
             ])}
-            to={ city.link }
+
+
+            to={ city.name }
             onClick={
               (evt) => {
                 evt.preventDefault();
-                dispatch(changeCity({ currentCity: city.id }));
+                dispatch(changeCity({ currentCity: city.name }));
                 dispatch(updateOffers());
                 setDefaultSorting();
               }
             }
           >
-            <span>{ (city.id)[0].toUpperCase() + (city.id).slice(1) }</span>
+            <span>{ (city.name)[0].toUpperCase() + (city.name).slice(1) }</span>
           </Link>
         </li>
       ))}

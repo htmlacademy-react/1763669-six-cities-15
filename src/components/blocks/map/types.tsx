@@ -1,8 +1,7 @@
 import { PlaceCardProps } from '../place-сard/types';
 
 export type CityProps = {
-  id: string;
-  link: string;
+  name: string;
   location: {
     latitude: number;
     longitude: number;
@@ -24,3 +23,12 @@ export type UseMapProps = {
   };
   containerRef: React.RefObject<HTMLElement | null>;
 }
+
+export const initialMapData = {
+  name: '',
+  location: {
+    latitude: 0,
+    longitude: 0,
+    zoom: 0
+  }
+};
