@@ -9,7 +9,8 @@ import { dropToken, saveToken } from '../store/token';
 import { AuthData, UserData } from './types';
 import { PlaceCardProps } from '../components/blocks/place-сard/types';
 import { AppDispatch } from '../store/types';
-import { clearUserData, loadOffers, requireAuthorization, setSpinner, setUserData } from '../store/action';
+import { clearUserData, loadOffers, requireAuthorization, setSpinner, setUserData, loadReviews } from '../store/action';
+import { ReviewProps } from '../components/blocks/review/types';
 
 type ApiThunkConfigObject = {
   dispatch: AppDispatch;
@@ -49,6 +50,18 @@ export const fetchNearPlaces = createAsyncThunk<void, string, {
     const { data } = await api.get<PlaceCardProps[]>(`${APIRoute.Offers}/${offerId}/nearby`);
     dispatch(loadNearPlaces(data));
   },
+);
+
+export const fetchReviews = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchReviews',
+  async (offerId, { dispatch, extra: api }) => {
+    const { data } = await api.get<ReviewProps[]>(`${APIRoute.Comments}/${offerId}`);
+    dispatch(loadReviews(data));
+  }
 );
 
 const checkAuthAction = createAsyncThunk<void, undefined, ApiThunkConfigObject>(

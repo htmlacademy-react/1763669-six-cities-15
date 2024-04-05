@@ -6,6 +6,7 @@ import {
   updateOffers,
   loadOffer,
   loadNearPlaces,
+  loadReviews,
   sortOffersPopular,
   sortOffersPriceLowToHight,
   sortOffersPriceHightToLow,
@@ -27,6 +28,7 @@ const initialState: initialStateProps = {
   activeOfferId: '',
   activeOffer: null,
   nearPlaces: null,
+  reviews: null,
   userData: {
     name: '',
     avatarUrl: '',
@@ -52,6 +54,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadNearPlaces, (state, action) => {
       state.nearPlaces = action.payload;
+    })
+    .addCase(loadReviews, (state, action) => {
+      state.reviews = action.payload;
     })
     .addCase(showActiveCard, (state, action) => {
       state.activeOfferId = action.payload.activeOfferId;

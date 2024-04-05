@@ -2,11 +2,10 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation, useParams } from 'react-router-dom';
 import classNames from 'classnames';
-import { fetchNearPlaces, fetchOffer } from '../../services/api-actions';
+import { fetchNearPlaces, fetchOffer, fetchReviews } from '../../services/api-actions';
 import { useAppSelector } from '../../store/useAppDispatch';
 
 import Reviews from '../../components/blocks/reviews/reviews';
-import { reviews } from '../../components/mocks/reviews-data';
 import PlaceCards from '../../components/blocks/place-cards/place-cards';
 import FormComment from '../../components/blocks/form-comment/form-comment';
 import Map from '../../components/blocks/map/map';
@@ -24,9 +23,11 @@ function Offer(): JSX.Element {
   useEffect(() => {
     store.dispatch(fetchOffer(offerId));
     store.dispatch(fetchNearPlaces(offerId));
+    store.dispatch(fetchReviews(offerId));
   }, [offerId]);
 
   const nearPlaces = useAppSelector((state) => state.nearPlaces);
+  const reviews = useAppSelector((state) => state.reviews);
 
   return (
     <div className="page">
@@ -121,8 +122,8 @@ function Offer(): JSX.Element {
                 </div>
               </div>
               <section className="offer__reviews reviews">
-                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ reviews.length }</span></h2>
-                <Reviews items={ reviews } />
+                <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ reviews ? reviews.length : 0 }</span></h2>
+                <Reviews items={ reviews ? reviews : [] } />
                 <FormComment />
               </section>
             </div>
