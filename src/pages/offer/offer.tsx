@@ -12,6 +12,7 @@ import Map from '../../components/blocks/map/map';
 import Header from '../../components/layout/header/header';
 import { store } from '../../store/store';
 import { initialMapData } from '../../components/blocks/map/types';
+import { AuthorizationStatus } from '../../components/consts';
 
 function Offer(): JSX.Element {
   const location = useLocation();
@@ -26,6 +27,7 @@ function Offer(): JSX.Element {
     store.dispatch(fetchReviews(offerId));
   }, [offerId]);
 
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const nearPlaces = useAppSelector((state) => state.nearPlaces);
   const reviews = useAppSelector((state) => state.reviews);
 
@@ -124,7 +126,10 @@ function Offer(): JSX.Element {
               <section className="offer__reviews reviews">
                 <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ reviews ? reviews.length : 0 }</span></h2>
                 <Reviews items={ reviews ? reviews : [] } />
-                <FormComment />
+                {
+                  authorizationStatus === AuthorizationStatus.Auth.toString() &&
+                    <FormComment />
+                }
               </section>
             </div>
           </div>
