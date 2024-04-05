@@ -9,8 +9,17 @@ import { dropToken, saveToken } from '../store/token';
 import { AuthData, UserData } from './types';
 import { PlaceCardProps } from '../components/blocks/place-сard/types';
 import { AppDispatch } from '../store/types';
-import { clearUserData, loadOffers, requireAuthorization, setSpinner, setUserData, loadReviews } from '../store/action';
+import {
+  clearUserData,
+  loadOffers,
+  requireAuthorization,
+  setSpinner,
+  setUserData,
+  loadReviews,
+  addReview
+} from '../store/action';
 import { ReviewProps } from '../components/blocks/review/types';
+import { CommentProps } from '../components/blocks/form-comment/types';
 
 type ApiThunkConfigObject = {
   dispatch: AppDispatch;
@@ -27,7 +36,7 @@ const fetchOffersAction = createAsyncThunk<void, undefined, ApiThunkConfigObject
   }
 );
 
-export const fetchOffer = createAsyncThunk<void, string, {
+const fetchOffer = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -40,7 +49,7 @@ export const fetchOffer = createAsyncThunk<void, string, {
   }
 );
 
-export const fetchNearPlaces = createAsyncThunk<void, string, {
+const fetchNearPlaces = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -52,7 +61,7 @@ export const fetchNearPlaces = createAsyncThunk<void, string, {
   },
 );
 
-export const fetchReviews = createAsyncThunk<void, string, {
+const fetchReviews = createAsyncThunk<void, string, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -96,4 +105,25 @@ const logoutAction = createAsyncThunk<void, undefined, ApiThunkConfigObject>(
   }
 );
 
-export { checkAuthAction, fetchOffersAction, loginAction, logoutAction };
+const sendReview = createAsyncThunk<void, { reviewData: CommentProps; offerId: string }, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'sendReview',
+  async ({ reviewData, offerId }, { dispatch, extra: api }) => {
+    const { data } = await api.post<ReviewProps>(`${APIRoute.Comments}/${offerId}`, reviewData);
+    dispatch(addReview(data));
+  },
+);
+
+export {
+  fetchOffer,
+  fetchNearPlaces,
+  fetchReviews,
+  checkAuthAction,
+  fetchOffersAction,
+  loginAction,
+  logoutAction,
+  sendReview,
+};

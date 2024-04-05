@@ -11,7 +11,8 @@ const showActiveCard = createAction<{ activeOfferId: string }>('showActiveCard')
 const updateOffers = createAction('updateOffers');
 const loadOffer = createAction<PlaceCardProps>('setActiveOffer');
 const loadNearPlaces = createAction<PlaceCardProps[]>('loadNearPlaces');
-export const loadReviews = createAction<ReviewProps[]>('loadReviews');
+const loadReviews = createAction<ReviewProps[]>('loadReviews');
+const addReview = createAction<ReviewProps>('data/addReview');
 
 const sortOffersPopular = createAction('sortOffersPopular');
 const sortOffersPriceLowToHight = createAction('sortOffersPriceLowToHight');
@@ -30,6 +31,8 @@ export {
   updateOffers,
   loadOffer,
   loadNearPlaces,
+  loadReviews,
+  addReview,
   sortOffersPopular,
   sortOffersPriceLowToHight,
   sortOffersPriceHightToLow,
