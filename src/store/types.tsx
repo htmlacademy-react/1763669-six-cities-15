@@ -7,6 +7,7 @@ export type initialStateProps = {
   offers: PlaceCardProps[];
   currentOffers: PlaceCardProps[];
   activeOfferId: string;
+  activeOffer: PlaceCardProps | null;
   userData: UserData;
   authorizationStatus: string;
   isDataLoading: boolean;

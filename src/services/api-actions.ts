@@ -1,6 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 
+import { State } from '../store/types';
+import { loadOffer } from '../store/action';
+
 import { APIRoute, AuthorizationStatus } from '../components/consts';
 import { dropToken, saveToken } from '../store/token';
 import { AuthData, UserData } from './types';
@@ -20,6 +23,19 @@ const fetchOffersAction = createAsyncThunk<void, undefined, ApiThunkConfigObject
     const { data } = await api.get<PlaceCardProps[]>(APIRoute.Offers);
     dispatch(setSpinner(false));
     dispatch(loadOffers({ offers: data }));
+  }
+);
+
+export const fetchOffer = createAsyncThunk<void, string, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}
+>(
+  'fetchOffer',
+  async (offerId, { dispatch, extra: api }) => {
+    const { data } = await api.get<PlaceCardProps>(`${APIRoute.Offers}/${offerId}`);
+    dispatch(loadOffer(data));
   }
 );
 
