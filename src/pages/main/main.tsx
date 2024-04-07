@@ -7,7 +7,7 @@ import MemoizedPlaceCards from '../../components/blocks/place-cards/place-cards'
 import Map from '../../components/blocks/map/map';
 import { CITIES } from '../../components/consts';
 import MemoizedLocationList from '../../components/blocks/location-list/location-list';
-import Sorting from '../../components/blocks/sorting/sorting';
+import MemoizedSorting from '../../components/blocks/sorting/sorting';
 
 function Main(): JSX.Element {
   const location = useLocation();
@@ -51,7 +51,7 @@ function Main(): JSX.Element {
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">{ currentOffers.length } places to stay in { currentCity }</b>
-                  <Sorting />
+                  <MemoizedSorting />
                   <MemoizedPlaceCards cards={ currentOffers } />
                 </section>
                 <div className="cities__right-section">
