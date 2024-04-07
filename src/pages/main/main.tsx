@@ -6,7 +6,7 @@ import MemoizedHeader from '../../components/layout/header/header';
 import MemoizedPlaceCards from '../../components/blocks/place-cards/place-cards';
 import Map from '../../components/blocks/map/map';
 import { CITIES } from '../../components/consts';
-import LocationList from '../../components/blocks/location-list/location-list';
+import MemoizedLocationList from '../../components/blocks/location-list/location-list';
 import Sorting from '../../components/blocks/sorting/sorting';
 
 function Main(): JSX.Element {
@@ -32,7 +32,7 @@ function Main(): JSX.Element {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <LocationList cities={ CITIES } />
+            <MemoizedLocationList cities={ CITIES } />
           </section>
         </div>
         <div className="cities">
