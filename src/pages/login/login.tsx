@@ -2,10 +2,10 @@ import { Helmet } from 'react-helmet-async';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useRef, FormEvent } from 'react';
 
+import MemoizedHeader from '../../components/layout/header/header';
 import { loginAction } from '../../services/api-actions';
 import { AuthorizationStatus, AppRoute } from '../../components/consts';
 import { useAppDispatch,useAppSelector } from '../../store/useAppDispatch';
-import Header from '../../components/layout/header/header';
 
 function Login(): JSX.Element {
   const location = useLocation();
@@ -37,7 +37,7 @@ function Login(): JSX.Element {
         <title>6 cities: authorization</title>
       </Helmet>
 
-      <Header location={ location }/>
+      <MemoizedHeader location={ location }/>
 
       <main className="page__main page__main--login">
         <div className="page__login-container container">

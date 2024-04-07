@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../store/useAppDispatch';
 import { logoutAction } from '../../../services/api-actions';
 
 import { AuthorizationStatus, AppRoute } from '../../consts';
+import { memo } from 'react';
 
 
 function Header({ location }: { location: Location }): JSX.Element {
@@ -70,4 +71,6 @@ function Header({ location }: { location: Location }): JSX.Element {
   );
 }
 
-export default Header;
+const MemoizedHeader = memo(Header);
+
+export default MemoizedHeader;

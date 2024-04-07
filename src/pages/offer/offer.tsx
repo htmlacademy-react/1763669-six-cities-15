@@ -5,11 +5,11 @@ import classNames from 'classnames';
 import { fetchNearPlaces, fetchOffer, fetchReviews } from '../../services/api-actions';
 import { useAppSelector } from '../../store/useAppDispatch';
 
+import MemoizedHeader from '../../components/layout/header/header';
 import Reviews from '../../components/blocks/reviews/reviews';
 import MemoizedPlaceCards from '../../components/blocks/place-cards/place-cards';
 import FormComment from '../../components/blocks/form-comment/form-comment';
 import Map from '../../components/blocks/map/map';
-import Header from '../../components/layout/header/header';
 import { store } from '../../store/store';
 import { initialMapData } from '../../components/blocks/map/types';
 import { AuthorizationStatus } from '../../components/consts';
@@ -37,7 +37,7 @@ function Offer(): JSX.Element {
         <title>6 cities: offer</title>
       </Helmet>
 
-      <Header location={ location }/>
+      <MemoizedHeader location={ location }/>
 
       <main className="page__main page__main--offer">
         <section className="offer">

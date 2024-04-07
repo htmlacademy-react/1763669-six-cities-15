@@ -2,12 +2,12 @@ import { useAppSelector } from '../../store/useAppDispatch';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
+import MemoizedHeader from '../../components/layout/header/header';
 import MemoizedPlaceCards from '../../components/blocks/place-cards/place-cards';
 import Map from '../../components/blocks/map/map';
 import { CITIES } from '../../components/consts';
 import LocationList from '../../components/blocks/location-list/location-list';
 import Sorting from '../../components/blocks/sorting/sorting';
-import Header from '../../components/layout/header/header';
 
 function Main(): JSX.Element {
   const location = useLocation();
@@ -20,7 +20,7 @@ function Main(): JSX.Element {
   return (
     <div className="page page--gray page--main">
 
-      <Header location={ location }/>
+      <MemoizedHeader location={ location }/>
 
       <main
         className={classNames([
