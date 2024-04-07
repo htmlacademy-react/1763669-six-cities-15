@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -17,11 +18,15 @@ function PlaceCards({cards}: PlaceCardsProps): JSX.Element {
         pathname.includes('/offer/') && 'near-places__list',
       ])}
     >
-      {cards.map((card: PlaceCardProps) => (
-        <MemoizedPlaceCard { ...card } key={ card.id } />
-      ))}
+      {
+        cards.map((card: PlaceCardProps) => (
+          <MemoizedPlaceCard { ...card } key={ card.id } />
+        ))
+      }
     </div>
   );
 }
 
-export default PlaceCards;
+const MemoizedPlaceCards = memo(PlaceCards);
+
+export default MemoizedPlaceCards;

@@ -6,7 +6,7 @@ import { fetchNearPlaces, fetchOffer, fetchReviews } from '../../services/api-ac
 import { useAppSelector } from '../../store/useAppDispatch';
 
 import Reviews from '../../components/blocks/reviews/reviews';
-import PlaceCards from '../../components/blocks/place-cards/place-cards';
+import MemoizedPlaceCards from '../../components/blocks/place-cards/place-cards';
 import FormComment from '../../components/blocks/form-comment/form-comment';
 import Map from '../../components/blocks/map/map';
 import Header from '../../components/layout/header/header';
@@ -141,7 +141,7 @@ function Offer(): JSX.Element {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <PlaceCards cards={ nearPlaces ? nearPlaces.slice(0, 3) : [] } />
+            <MemoizedPlaceCards cards={ nearPlaces ? nearPlaces.slice(0, 3) : [] } />
           </section>
         </div>
       </main>
