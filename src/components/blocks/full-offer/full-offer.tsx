@@ -15,7 +15,9 @@ function FullOffer(): JSX.Element {
   const reviews = useAppSelector((state) => state.reviews);
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const nearPlaces = useAppSelector((state) => state.nearPlaces);
+  const nearPlaces = useAppSelector((state) => state.nearPlaces)?.slice(0, 3);
+
+  console.log(nearPlaces)
 
   return (
     <section className="offer">
@@ -122,7 +124,7 @@ function FullOffer(): JSX.Element {
       </div>
       {
         nearPlaces &&
-          <Map city={ CITIES[selectedCityId] } points={ nearPlaces.slice(0, 3) } activeOfferId={ '' } />
+          <Map city={ CITIES[selectedCityId] } points={ nearPlaces } activeOfferId={ '' } />
       }
     </section>
   );

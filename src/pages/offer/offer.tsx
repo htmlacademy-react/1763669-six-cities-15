@@ -21,7 +21,7 @@ function Offer(): JSX.Element {
     store.dispatch(fetchReviews(offerId));
   }, [offerId]);
 
-  const nearPlaces = useAppSelector((state) => state.nearPlaces);
+  const nearPlaces = useAppSelector((state) => state.nearPlaces)?.slice(0, 3);
 
   return (
     <div className="page">
@@ -36,7 +36,7 @@ function Offer(): JSX.Element {
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
-            <MemoizedPlaceCards cards={ nearPlaces ? nearPlaces.slice(0, 3) : [] } />
+            <MemoizedPlaceCards cards={ nearPlaces ? nearPlaces : [] } />
           </section>
         </div>
       </main>
