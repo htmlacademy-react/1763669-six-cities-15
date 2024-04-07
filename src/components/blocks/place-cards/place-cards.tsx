@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { PlaceCardsProps } from './types';
 import { PlaceCardProps } from '../place-сard/types';
 import MemoizedPlaceCard from '../place-сard/place-сard';
-import { AppRoute } from '../../consts';
+import { isMainPage, isOfferPage } from '../../utils';
 
 function PlaceCards({cards}: PlaceCardsProps): JSX.Element {
   const { pathname } = useLocation();
@@ -14,8 +14,8 @@ function PlaceCards({cards}: PlaceCardsProps): JSX.Element {
     <div
       className={classNames([
         'places__list',
-        pathname === AppRoute.Main.toString() && 'cities__places-list tabs__content',
-        pathname.includes('/offer/') && 'near-places__list',
+        isMainPage(pathname) && 'cities__places-list tabs__content',
+        isOfferPage(pathname) && 'near-places__list',
       ])}
     >
       {

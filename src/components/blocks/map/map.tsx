@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 import useMap from './useMap';
 import { MapProps } from './types';
-import { AppRoute } from '../../consts';
+import { isMainPage, isOfferPage } from '../../utils';
 
 import leaflet, { LayerGroup } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -55,8 +55,8 @@ function Map({ city, points, activeOfferId }: MapProps): JSX.Element {
     <section
       className={classNames([
         'map',
-        pathname === AppRoute.Main.toString() && 'cities__map',
-        pathname === AppRoute.Offer.toString() && 'offer__map',
+        isMainPage(pathname) && 'cities__map',
+        isOfferPage(pathname) && 'offer__map',
       ])}
       ref={ mapRef }
     />
