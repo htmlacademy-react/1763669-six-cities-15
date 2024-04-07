@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { convertToPercentage, convertDataToText } from '../../utils';
 import { ReviewProps } from './types';
 
@@ -28,4 +29,6 @@ function Review(props: ReviewProps): JSX.Element {
   );
 }
 
-export default Review;
+const MemoizedReview = memo(Review);
+
+export default MemoizedReview;
