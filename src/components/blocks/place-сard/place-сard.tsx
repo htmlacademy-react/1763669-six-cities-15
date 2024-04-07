@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../../store/useAppDispatch';
 import { PlaceCardProps } from './types';
 import { AppRoute } from '../../consts';
 import { showActiveCard } from '../../../store/action';
+import { capitalizeFirstLetter, convertToPercentage } from '../../utils';
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
   const { pathname } = useLocation();
@@ -69,12 +70,12 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={ {width: `${Math.round(props.rating) * 20}%`} }></span>
+              <span style={ {width: `${convertToPercentage(props.rating) }%`} }></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
           <h2 className="place-card__name">{ props.title }</h2>
-          <p className="place-card__type">{ props.type.charAt(0).toUpperCase() + props.type.slice(1) }</p>
+          <p className="place-card__type">{ capitalizeFirstLetter(props.type) }</p>
         </div>
       </Link>
     </article>

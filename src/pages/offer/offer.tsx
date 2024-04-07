@@ -13,6 +13,7 @@ import Map from '../../components/blocks/map/map';
 import { store } from '../../store/store';
 import { initialMapData } from '../../components/blocks/map/types';
 import { AuthorizationStatus } from '../../components/consts';
+import { capitalizeFirstLetter, convertToPercentage } from '../../components/utils';
 
 function Offer(): JSX.Element {
   const location = useLocation();
@@ -78,7 +79,7 @@ function Offer(): JSX.Element {
               </div>
               <div className="offer__rating rating">
                 <div className="offer__stars rating__stars">
-                  <span style={ {width: `${Math.round(activeOffer?.rating || 0) * 20}%`} }></span>
+                  <span style={ {width: `${ convertToPercentage(activeOffer?.rating || 0) }%`} }></span>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="offer__rating-value rating__value">{ activeOffer?.rating }</span>
@@ -103,7 +104,7 @@ function Offer(): JSX.Element {
                 <ul className="offer__inside-list">
                   {
                     activeOffer?.goods.map((item) => (
-                      <li className="offer__inside-item" key={ item }>{ item.charAt(0).toUpperCase() + item.slice(1) }</li>
+                      <li className="offer__inside-item" key={ item }>{ capitalizeFirstLetter(item) }</li>
                     ))
                   }
                 </ul>
