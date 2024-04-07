@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { useAppDispatch } from '../../../store/useAppDispatch';
@@ -80,4 +81,6 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   );
 }
 
-export default PlaceCard;
+const MemoizedPlaceCard = memo(PlaceCard);
+
+export default MemoizedPlaceCard;

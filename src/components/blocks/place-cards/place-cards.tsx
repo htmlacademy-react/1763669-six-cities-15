@@ -3,7 +3,7 @@ import classNames from 'classnames';
 
 import { PlaceCardsProps } from './types';
 import { PlaceCardProps } from '../place-сard/types';
-import PlaceCard from '../place-сard/place-сard';
+import MemoizedPlaceCard from '../place-сard/place-сard';
 import { AppRoute } from '../../consts';
 
 function PlaceCards({cards}: PlaceCardsProps): JSX.Element {
@@ -18,7 +18,7 @@ function PlaceCards({cards}: PlaceCardsProps): JSX.Element {
       ])}
     >
       {cards.map((card: PlaceCardProps) => (
-        <PlaceCard { ...card } key={ card.id } />
+        <MemoizedPlaceCard { ...card } key={ card.id } />
       ))}
     </div>
   );

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../store/useAppDispatch';
 
-import PlaceCard from '../place-сard/place-сard';
+import MemoizedPlaceCard from '../place-сard/place-сard';
 
 function FavoriteOffers () {
   const favoriteOffers = useAppSelector((state) => state.offers).filter((offer) => offer.isFavorite);
@@ -29,7 +29,7 @@ function FavoriteOffers () {
               {
                 favoriteOffers.map((offer) => {
                   if (offer.city.name === cityName) {
-                    return <PlaceCard { ...offer } key={ offer.id } />;
+                    return <MemoizedPlaceCard { ...offer } key={ offer.id } />;
                   }
                 })
               }
