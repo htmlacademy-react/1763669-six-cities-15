@@ -1,0 +1,40 @@
+.offer__reviews {
+  display: flex;
+  flex-direction: column;
+}
+
+.button-more {
+  max-width: 200px;
+  width: 40%;
+
+  font: inherit;
+  text-align: center;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  color: #fff;
+
+  background-color: #4481c3;
+  border-radius: 3px;
+  border: none;
+
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  align-self: center;
+
+  -webkit-transition: color .3s, background-color .3s;
+  transition: color .3s, background-color .3s;
+  outline: 0;
+
+  padding: 16px 20px 13px;
+}
+
+.button-more:hover,
+.button-more:active {
+  background-color: #3069a6;
+}
+
+.button-more:disabled {
+  background-color: #c7c7c7;
+  cursor: initial;
+}
