@@ -17,8 +17,7 @@ import {
   clearUserData,
 } from './action';
 
-import { AuthorizationStatus } from '../components/consts';
-import { CITIES } from '../components/consts';
+import { AuthorizationStatus, MAX_NEAR_OFFERS, CITIES } from '../components/consts';
 import { initialStateProps } from './types';
 
 const initialState: initialStateProps = {
@@ -53,7 +52,7 @@ const reducer = createReducer(initialState, (builder) => {
       state.activeOffer = action.payload;
     })
     .addCase(loadNearPlaces, (state, action) => {
-      state.nearPlaces = action.payload;
+      state.nearPlaces = action.payload.slice(0, MAX_NEAR_OFFERS);
     })
     .addCase(loadReviews, (state, action) => {
       state.reviews = action.payload;

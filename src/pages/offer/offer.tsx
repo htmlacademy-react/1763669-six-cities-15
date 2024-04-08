@@ -21,7 +21,7 @@ function Offer(): JSX.Element {
     store.dispatch(fetchReviews(offerId));
   }, [offerId]);
 
-  const nearPlaces = useAppSelector((state) => state.nearPlaces)?.slice(0, 3);
+  const nearPlaces = useAppSelector((state) => state.nearPlaces);
 
   return (
     <div className="page">

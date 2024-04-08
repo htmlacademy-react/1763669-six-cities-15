@@ -1,17 +1,18 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { useAppDispatch } from '../../../store/useAppDispatch';
 
 import { PlaceCardProps } from './types';
 import { showActiveCard } from '../../../store/action';
-import { capitalizeFirstLetter, convertToPercentage, isMainPage, isOfferPage, isFavoritesPage } from '../../utils';
+import { capitalizeFirstLetter, setInlineWidth, isMainPage, isOfferPage, isFavoritesPage } from '../../utils';
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
   const { pathname } = useLocation();
 
   const previewWidth = isFavoritesPage(pathname) ? 150 : 260;
   const previewHeight = isFavoritesPage(pathname) ? 110 : 200;
+  const setInlineWidthMemoized = useCallback((num: number) => setInlineWidth(num), []);
 
   const dispatch = useAppDispatch();
 
@@ -69,7 +70,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={ {width: `${convertToPercentage(props.rating) }%`} }></span>
+              <span style={ setInlineWidthMemoized(props.rating) }></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>

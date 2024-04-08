@@ -1,3 +1,4 @@
+import { useCallback } from 'react';
 import classNames from 'classnames';
 import { useAppSelector } from '../../../store/useAppDispatch';
 
@@ -5,19 +6,22 @@ import { AuthorizationStatus, CITIES } from '../../consts';
 import Map from '../map/map';
 import FormComment from '../form-comment/form-comment';
 import Reviews from '../reviews/reviews';
-import { convertToPercentage, capitalizeFirstLetter } from '../../utils';
+import { setInlineWidth, capitalizeFirstLetter } from '../../utils';
 import { memo } from 'react';
 
 function FullOffer(): JSX.Element {
   const activeOffer = useAppSelector((state) => state.activeOffer);
-  const selectedCityId = CITIES.findIndex((city) => city.name === activeOffer?.city.name);
+  let selectedCityId = -1;
+  selectedCityId = CITIES.findIndex((city) => city.name === activeOffer?.city.name);
 
   const reviews = useAppSelector((state) => state.reviews);
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const nearPlaces = useAppSelector((state) => state.nearPlaces)?.slice(0, 3);
+  const nearPlaces = useAppSelector((state) => state.nearPlaces);
+  const activeOfferId = useAppSelector((state) => state.activeOfferId);
 
-  console.log(nearPlaces)
+  const setInlineWidthMemoized = useCallback((num: number) => setInlineWidth(num), []);
+
 
   return (
     <section className="offer">
@@ -58,7 +62,7 @@ function FullOffer(): JSX.Element {
           </div>
           <div className="offer__rating rating">
             <div className="offer__stars rating__stars">
-              <span style={ {width: `${ convertToPercentage(activeOffer?.rating || 0) }%`} }></span>
+              <span style={ setInlineWidthMemoized(activeOffer?.rating || 0) }></span>
               <span className="visually-hidden">Rating</span>
             </div>
             <span className="offer__rating-value rating__value">{ activeOffer?.rating }</span>
@@ -123,8 +127,8 @@ function FullOffer(): JSX.Element {
         </div>
       </div>
       {
-        nearPlaces &&
-          <Map city={ CITIES[selectedCityId] } points={ nearPlaces } activeOfferId={ '' } />
+        nearPlaces && activeOffer && activeOffer.city &&
+          <Map city={ CITIES[selectedCityId] } points={ nearPlaces } activeOfferId={ activeOfferId } />
       }
     </section>
   );

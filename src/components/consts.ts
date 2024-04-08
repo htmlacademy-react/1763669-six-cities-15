@@ -97,12 +97,15 @@ const CITIES = [
   },
 ];
 
+const MAX_NEAR_OFFERS = 3;
+
 export {
   AppRoute,
   APIRoute,
   AuthorizationStatus,
   STAR_RATING,
   CITIES,
+  MAX_NEAR_OFFERS
 };
 
 
