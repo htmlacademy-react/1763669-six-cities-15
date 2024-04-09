@@ -1,34 +1,20 @@
 import { memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-import { useAppDispatch, useAppSelector } from '../../../store/useAppDispatch';
-
-import { AuthorizationStatus } from '../../consts';
-import { addFavorite } from '../../../services/api-actions';
-import { MouseEvent } from 'react';
+import { useAppDispatch } from '../../../store/useAppDispatch';
 
 import { PlaceCardProps } from './types';
 import { showActiveCard } from '../../../store/action';
 import { capitalizeFirstLetter, setInlineWidth, isMainPage, isOfferPage, isFavoritesPage } from '../../utils';
+import ButtonBookmark from '../button-bookmark/button-bookmark';
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-
   const previewWidth = isFavoritesPage(pathname) ? 150 : 260;
   const previewHeight = isFavoritesPage(pathname) ? 110 : 200;
   const setInlineWidthMemoized = useCallback((num: number) => setInlineWidth(num), []);
-
-  const handleFavoriteButtonClick = (evt: MouseEvent<HTMLButtonElement>) => {
-    const button = evt.target as HTMLButtonElement;
-
-    if (authorizationStatus === AuthorizationStatus.Auth.toString()) {
-      button.classList.toggle('place-card__bookmark-button--active');
-      dispatch(addFavorite({ id: props.id, isFavorite: !props.isFavorite }));
-    }
-  };
 
   return (
     <article
@@ -62,7 +48,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
       </Link>
       <div
         className={classNames([
-          'place-card__info',
+          'place-card_  _info',
           isFavoritesPage(pathname) && 'favorites__card-info',
         ])}
       >
@@ -71,28 +57,10 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
             <b className="place-card__price-value">&euro;{ props.price }</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button
-            className={classNames([
-              'button',
-              isMainPage(pathname) || isFavoritesPage(pathname) && 'place-card__bookmark-button',
-              isOfferPage(pathname) && 'offer__bookmark-button',
-              props.isFavorite && 'place-card__bookmark-button--active',
-            ])}
-            type="button"
-            onClick={ handleFavoriteButtonClick }
-          >
-            <svg
-              className={classNames([
-                isMainPage(pathname) || isFavoritesPage(pathname) && 'place-card__bookmark-icon',
-                isOfferPage(pathname) && 'offer__bookmark-icon',
-              ])}
-              width="18"
-              height="19"
-            >
-              <use xlinkHref="#icon-bookmark"></use>
-            </svg>
-            <span className="visually-hidden">In bookmarks</span>
-          </button>
+          <ButtonBookmark
+            id={ props.id }
+            isFavorite={ props.isFavorite }
+          />
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
