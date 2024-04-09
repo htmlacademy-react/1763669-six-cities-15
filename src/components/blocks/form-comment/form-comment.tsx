@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../store/useAppDispatch';
 
 import { FormEvent } from 'react';
-import { sendReview } from '../../../services/api-actions';
+import { sendReviewAction } from '../../../services/api-actions';
 
 import { STAR_RATING } from '../../consts';
 import { CommentProps, handleChangeProps } from './types';
@@ -36,7 +36,7 @@ function FormComment () {
       comment: review.review,
       rating: Number(review.starRating),
     };
-    dispatch(sendReview({ reviewData, offerId }));
+    dispatch(sendReviewAction({ reviewData, offerId }));
     resetForm();
   };
 

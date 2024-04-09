@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../store/useAppDispatch';
 
-import { fetchFavorites } from '../../services/api-actions';
+import { fetchFavoritesAction } from '../../services/api-actions';
 import MemoizedHeader from '../../components/layout/header/header';
 import FavoriteOffers from '../../components/blocks/favorite-offers/favorite-offers';
 import Footer from '../../components/layout/footer/footer';
@@ -13,7 +13,7 @@ function Favorites(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFavorites());
+    dispatch(fetchFavoritesAction());
   },[dispatch]
   );
 

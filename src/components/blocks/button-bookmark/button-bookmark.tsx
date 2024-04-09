@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../store/useAppDispatch';
-import { addFavorite } from '../../../services/api-actions';
+import { addFavoriteAction } from '../../../services/api-actions';
 
 import { AuthorizationStatus } from '../../consts';
 import { ButtonBookmarkProps } from './types';
@@ -15,7 +15,7 @@ function ButtonBookmark({ id, isFavorite, isOffer = false }: ButtonBookmarkProps
 
     if (authorizationStatus === AuthorizationStatus.Auth.toString()) {
       button.classList.toggle(isOffer ? 'offer__bookmark-button--active' : 'place-card__bookmark-button--active');
-      dispatch(addFavorite({ id: id, isFavorite: !isFavorite }));
+      dispatch(addFavoriteAction({ offerId: id, isFavorite: !isFavorite }));
     }
   };
 

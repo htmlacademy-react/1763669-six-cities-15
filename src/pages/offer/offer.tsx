@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation, useParams } from 'react-router-dom';
-import { fetchNearPlaces, fetchOffer, fetchReviews } from '../../services/api-actions';
+import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../services/api-actions';
 import { useAppSelector } from '../../store/useAppDispatch';
 
 import MemoizedHeader from '../../components/layout/header/header';
@@ -16,9 +16,9 @@ function Offer(): JSX.Element {
   const offerId = params.id || '';
 
   useEffect(() => {
-    store.dispatch(fetchOffer(offerId));
-    store.dispatch(fetchNearPlaces(offerId));
-    store.dispatch(fetchReviews(offerId));
+    store.dispatch(fetchOfferAction(offerId));
+    store.dispatch(fetchNearPlacesAction(offerId));
+    store.dispatch(fetchReviewsAction(offerId));
   }, [offerId]);
 
   const nearPlaces = useAppSelector((state) => state.nearPlaces);

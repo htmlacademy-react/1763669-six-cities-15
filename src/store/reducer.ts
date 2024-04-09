@@ -22,7 +22,7 @@ import {
 import { AuthorizationStatus, MAX_NEAR_OFFERS, CITIES } from '../components/consts';
 import { initialStateProps } from './types';
 import { PlaceCardProps } from '../components/blocks/place-сard/types';
-import { addFavorite, fetchFavorites } from '../services/api-actions';
+import { addFavoriteAction, fetchFavoritesAction } from '../services/api-actions';
 
 const initialState: initialStateProps = {
   currentCity: CITIES[0].name,
@@ -98,10 +98,10 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(setSpinner, (state, action) => {
       state.isDataLoading = action.payload;
     })
-    .addCase(fetchFavorites.fulfilled, (state, action) => {
+    .addCase(fetchFavoritesAction.fulfilled, (state, action) => {
       state.favorites = action.payload || [];
     })
-    .addCase(addFavorite.fulfilled, (state, action: PayloadAction<PlaceCardProps>) => {
+    .addCase(addFavoriteAction.fulfilled, (state, action: PayloadAction<PlaceCardProps>) => {
       if (action.payload.isFavorite) {
         state.favorites = [...(state.favorites ?? []), action.payload];
       } else {

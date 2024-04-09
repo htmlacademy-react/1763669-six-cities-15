@@ -12,6 +12,6 @@ export type UserData = {
 };
 
 export type FavoriteProps = {
-  id: string;
+  offerId: string;
   isFavorite: boolean;
 };
