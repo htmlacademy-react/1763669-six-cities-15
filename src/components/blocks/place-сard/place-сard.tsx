@@ -1,16 +1,18 @@
+import { memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { useAppDispatch } from '../../../store/useAppDispatch';
 
 import { PlaceCardProps } from './types';
-import { AppRoute } from '../../consts';
 import { showActiveCard } from '../../../store/action';
+import { capitalizeFirstLetter, setInlineWidth, isMainPage, isOfferPage, isFavoritesPage } from '../../utils';
 
 function PlaceCard(props: PlaceCardProps): JSX.Element {
   const { pathname } = useLocation();
 
-  const previewWidth = pathname === AppRoute.Favorites.toString() ? 150 : 260;
-  const previewHeight = pathname === AppRoute.Favorites.toString() ? 110 : 200;
+  const previewWidth = isFavoritesPage(pathname) ? 150 : 260;
+  const previewHeight = isFavoritesPage(pathname) ? 110 : 200;
+  const setInlineWidthMemoized = useCallback((num: number) => setInlineWidth(num), []);
 
   const dispatch = useAppDispatch();
 
@@ -18,9 +20,9 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
     <article
       className={classNames([
         'place-card',
-        pathname === AppRoute.Main.toString() && 'cities__card',
-        pathname.includes('/offer/') && 'near-places__card',
-        pathname === AppRoute.Favorites.toString() && 'favorites__card',
+        isMainPage(pathname) && 'cities__card',
+        isOfferPage(pathname) && 'near-places__card',
+        isFavoritesPage(pathname) && 'favorites__card',
       ])}
       onMouseOver={ () => dispatch(showActiveCard({ activeOfferId: props.id })) }
       onMouseLeave={ () => dispatch(showActiveCard({ activeOfferId: '' })) }
@@ -34,9 +36,9 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         <div
           className={classNames([
             'place-card__image-wrapper',
-            pathname === AppRoute.Main.toString() && 'cities__image-wrapper',
-            pathname.includes('/offer/') && 'near-places__image-wrapper',
-            pathname === AppRoute.Favorites.toString() && 'favorites__image-wrapper',
+            isMainPage(pathname) && 'cities__image-wrapper',
+            isOfferPage(pathname) && 'near-places__image-wrapper',
+            isFavoritesPage(pathname) && 'favorites__image-wrapper',
           ])}
         >
           <img className="place-card__image" src={ props.previewImage } width={ previewWidth } height={ previewHeight } alt="Place image" />
@@ -44,7 +46,7 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
         <div
           className={classNames([
             'place-card__info',
-            pathname === AppRoute.Favorites.toString() && 'favorites__card-info',
+            isFavoritesPage(pathname) && 'favorites__card-info',
           ])}
         >
           <div className="place-card__price-wrapper">
@@ -68,16 +70,18 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars">
-              <span style={ {width: `${Math.round(props.rating) * 20}%`} }></span>
+              <span style={ setInlineWidthMemoized(props.rating) }></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>
           <h2 className="place-card__name">{ props.title }</h2>
-          <p className="place-card__type">{ props.type.charAt(0).toUpperCase() + props.type.slice(1) }</p>
+          <p className="place-card__type">{ capitalizeFirstLetter(props.type) }</p>
         </div>
       </Link>
     </article>
   );
 }
 
-export default PlaceCard;
+const MemoizedPlaceCard = memo(PlaceCard);
+
+export default MemoizedPlaceCard;

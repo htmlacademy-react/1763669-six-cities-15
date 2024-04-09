@@ -1,11 +1,10 @@
+import { memo, useCallback } from 'react';
+import { setInlineWidth, convertDataToText } from '../../utils';
 import { ReviewProps } from './types';
 
 function Review(props: ReviewProps): JSX.Element {
-  const convertDataToText = () => {
-    const dateObject = new Date(props.date);
-    const formattedDate = dateObject.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
-    return formattedDate;
-  };
+  const setInlineWidthMemoized = useCallback((num: number) => setInlineWidth(num), []);
+  const convertDataToTextMemoized = useCallback((date: string) => convertDataToText(date), []);
 
   return (
     <li className="reviews__item">
@@ -20,17 +19,19 @@ function Review(props: ReviewProps): JSX.Element {
       <div className="reviews__info">
         <div className="reviews__rating rating">
           <div className="reviews__stars rating__stars">
-            <span style={ {width: `${Math.round(props.rating) * 20}%`} }></span>
+            <span style={ setInlineWidthMemoized(props.rating) }></span>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
         <p className="reviews__text">
           { props.comment }
         </p>
-        <time className="reviews__time" dateTime={ props.date }>{ convertDataToText() }</time>
+        <time className="reviews__time" dateTime={ props.date }>{ convertDataToTextMemoized(props.date) }</time>
       </div>
     </li>
   );
 }
 
-export default Review;
+const MemoizedReview = memo(Review);
+
+export default MemoizedReview;

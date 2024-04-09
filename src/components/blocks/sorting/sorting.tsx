@@ -5,6 +5,7 @@ import {
   sortOffersRating,
   sortOffersPopular,
 } from '../../../store/action';
+import { memo } from 'react';
 
 function Sorting(): JSX.Element {
   const sortingList = document.querySelector('.places__options');
@@ -94,4 +95,6 @@ function Sorting(): JSX.Element {
   );
 }
 
-export default Sorting;
+const MemoizedSorting = memo(Sorting);
+
+export default MemoizedSorting;

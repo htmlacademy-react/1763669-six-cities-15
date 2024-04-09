@@ -1,8 +1,10 @@
+import { memo } from 'react';
 import { Link, Location } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../store/useAppDispatch';
 import { logoutAction } from '../../../services/api-actions';
 
 import { AuthorizationStatus, AppRoute } from '../../consts';
+import { isMainPage, isFavoritesPage, isOfferPage } from '../../utils';
 
 
 function Header({ location }: { location: Location }): JSX.Element {
@@ -30,9 +32,7 @@ function Header({ location }: { location: Location }): JSX.Element {
             </Link>
           </div>
           {
-            (pathname === AppRoute.Main.toString() ||
-            pathname.includes('/offer/') ||
-            pathname === AppRoute.Offer.toString()) &&
+            (isMainPage(pathname) || isOfferPage(pathname) || isFavoritesPage(pathname)) &&
               <nav className="header__nav">
                 <ul className="header__nav-list">
                   {
@@ -70,4 +70,6 @@ function Header({ location }: { location: Location }): JSX.Element {
   );
 }
 
-export default Header;
+const MemoizedHeader = memo(Header);
+
+export default MemoizedHeader;

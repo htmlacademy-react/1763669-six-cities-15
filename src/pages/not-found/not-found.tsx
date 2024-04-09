@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useLocation } from 'react-router-dom';
 
 import { AppRoute } from '../../components/consts';
-import Header from '../../components/layout/header/header';
+import MemoizedHeader from '../../components/layout/header/header';
 
 function NotFound(): JSX.Element {
   const location = useLocation();
@@ -13,7 +13,7 @@ function NotFound(): JSX.Element {
         <title>6 cities: page is not found</title>
       </Helmet>
 
-      <Header location={ location }/>
+      <MemoizedHeader location={ location }/>
 
       <main className="page__main">
         <div className="container">

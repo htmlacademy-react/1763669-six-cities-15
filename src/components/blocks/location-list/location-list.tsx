@@ -1,7 +1,7 @@
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
-
-import { CityProps, CitiesProps } from './types';
 import classNames from 'classnames';
+import { CityProps, CitiesProps } from './types';
 import { useAppDispatch, useAppSelector } from '../../../store/useAppDispatch';
 import { changeCity, updateOffers, sortOffersPopular } from '../../../store/action';
 
@@ -54,4 +54,6 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
   );
 }
 
-export default LocationList;
+const MemoizedLocationList = memo(LocationList);
+
+export default MemoizedLocationList;
