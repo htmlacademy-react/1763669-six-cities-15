@@ -8,6 +8,7 @@ import Reviews from '../reviews/reviews';
 import { setInlineWidth, capitalizeFirstLetter } from '../../utils';
 import { memo } from 'react';
 import ButtonBookmark from '../button-bookmark/button-bookmark';
+import { ReviewProps } from '../review/types';
 
 function FullOffer(): JSX.Element {
   const activeOffer = useAppSelector((state) => state.activeOffer);
@@ -15,6 +16,17 @@ function FullOffer(): JSX.Element {
   selectedCityId = CITIES.findIndex((city) => city.name === activeOffer?.city.name);
 
   const reviews = useAppSelector((state) => state.reviews);
+  let finalReviews: ReviewProps[] = [];
+
+  if (reviews) {
+    const sortedReviews = [...reviews].sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
+
+    finalReviews = sortedReviews.slice(0, 10);
+  }
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const nearPlaces = useAppSelector((state) => state.nearPlaces);
@@ -110,7 +122,7 @@ function FullOffer(): JSX.Element {
           </div>
           <section className="offer__reviews reviews">
             <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ reviews ? reviews.length : 0 }</span></h2>
-            <Reviews items={ reviews ? reviews : [] } />
+            <Reviews items={ finalReviews ? finalReviews : [] } />
             {
               authorizationStatus === AuthorizationStatus.Auth.toString() &&
                 <FormComment />
