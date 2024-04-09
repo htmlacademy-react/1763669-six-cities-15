@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import { useAppSelector } from '../../../store/useAppDispatch';
 
@@ -6,10 +7,12 @@ import { AuthorizationStatus, CITIES } from '../../consts';
 import Map from '../map/map';
 import FormComment from '../form-comment/form-comment';
 import Reviews from '../reviews/reviews';
-import { setInlineWidth, capitalizeFirstLetter } from '../../utils';
+import { setInlineWidth, capitalizeFirstLetter, isMainPage, isOfferPage } from '../../utils';
 import { memo } from 'react';
 
 function FullOffer(): JSX.Element {
+  const { pathname } = useLocation();
+
   const activeOffer = useAppSelector((state) => state.activeOffer);
   let selectedCityId = -1;
   selectedCityId = CITIES.findIndex((city) => city.name === activeOffer?.city.name);
@@ -48,13 +51,21 @@ function FullOffer(): JSX.Element {
             <h1 className="offer__name">{ activeOffer?.title }</h1>
             <button
               className={classNames([
-                'place-card__bookmark-button',
                 'button',
-                activeOffer?.isFavorite && 'place-card__bookmark-button--active'
+                isMainPage(pathname) && 'place-card__bookmark-button',
+                isOfferPage(pathname) && 'offer__bookmark-button',
+                activeOffer?.isFavorite && 'place-card__bookmark-button--active',
               ])}
               type="button"
             >
-              <svg className="offer__bookmark-icon" width="31" height="33">
+              <svg
+                className={classNames([
+                  isMainPage(pathname) && 'place-card__bookmark-icon',
+                  isOfferPage(pathname) && 'offer__bookmark-icon',
+                ])}
+                width="31"
+                height="33"
+              >
                 <use xlinkHref="#icon-bookmark"></use>
               </svg>
               <span className="visually-hidden">To bookmarks</span>

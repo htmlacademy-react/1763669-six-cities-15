@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { PayloadAction } from '@reduxjs/toolkit';
 import {
   loadOffers,
   changeCity,
@@ -17,8 +18,11 @@ import {
   clearUserData,
 } from './action';
 
+
 import { AuthorizationStatus, MAX_NEAR_OFFERS, CITIES } from '../components/consts';
 import { initialStateProps } from './types';
+import { PlaceCardProps } from '../components/blocks/place-сard/types';
+import { addFavorite, fetchFavorites } from '../services/api-actions';
 
 const initialState: initialStateProps = {
   currentCity: CITIES[0].name,
@@ -37,6 +41,7 @@ const initialState: initialStateProps = {
   },
   authorizationStatus: AuthorizationStatus.Unknown,
   isDataLoading: false,
+  favorites: [],
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -92,6 +97,16 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSpinner, (state, action) => {
       state.isDataLoading = action.payload;
+    })
+    .addCase(fetchFavorites.fulfilled, (state, action) => {
+      state.favorites = action.payload || [];
+    })
+    .addCase(addFavorite.fulfilled, (state, action: PayloadAction<PlaceCardProps>) => {
+      if (action.payload.isFavorite) {
+        state.favorites = [...(state.favorites ?? []), action.payload];
+      } else {
+        state.favorites = (state.favorites ?? []).filter((item) => item.isFavorite);
+      }
     });
 });
 

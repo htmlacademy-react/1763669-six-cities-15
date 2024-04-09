@@ -14,6 +14,7 @@ export type initialStateProps = {
   userData: UserData;
   authorizationStatus: string;
   isDataLoading: boolean;
+  favorites: PlaceCardProps[] | null;
 };
 
 export type State = ReturnType<typeof store.getState>;

@@ -6,7 +6,7 @@ import { loadOffer, loadNearPlaces } from '../store/action';
 
 import { APIRoute, AuthorizationStatus } from '../components/consts';
 import { dropToken, saveToken } from '../store/token';
-import { AuthData, UserData } from './types';
+import { AuthData, FavoriteProps, UserData } from './types';
 import { PlaceCardProps } from '../components/blocks/place-сard/types';
 import { AppDispatch } from '../store/types';
 import {
@@ -117,6 +117,24 @@ const sendReview = createAsyncThunk<void, { reviewData: CommentProps; offerId: s
   },
 );
 
+const fetchFavorites = createAsyncThunk<PlaceCardProps[], undefined, { extra: AxiosInstance }>(
+  'fetchFavorites',
+  async (_arg, { extra: api }) => {
+    const { data } = await api.get<PlaceCardProps[]>(APIRoute.Favorites);
+    return data;
+  },
+);
+
+const addFavorite = createAsyncThunk<PlaceCardProps, FavoriteProps, { dispatch: AppDispatch; extra: AxiosInstance }>(
+  'addFavorite',
+  async ({ id, isFavorite }, {extra: api}) => {
+    const status = Number(isFavorite).toString();
+    const { data } = await api.post<PlaceCardProps>(`/favorite/${ id }/${ status }`);
+
+    return data;
+  }
+);
+
 export {
   fetchOffer,
   fetchNearPlaces,
@@ -126,4 +144,6 @@ export {
   loginAction,
   logoutAction,
   sendReview,
+  fetchFavorites,
+  addFavorite
 };

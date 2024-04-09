@@ -12,6 +12,8 @@ function Header({ location }: { location: Location }): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus) as AuthorizationStatus;
   const user = useAppSelector((state) => state.userData);
+  const favoritesLength = useAppSelector((state) => state.favorites)?.length ?? 0;
+
 
   const dispatch = useAppDispatch();
 
@@ -41,7 +43,7 @@ function Header({ location }: { location: Location }): JSX.Element {
                         <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.Favorites }>
                           <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                           <span className="header__user-name user__name">{ user.email }</span>
-                          <span className="header__favorite-count">3</span>
+                          <span className="header__favorite-count">{ favoritesLength }</span>
                         </Link>
                       </li>
                   }

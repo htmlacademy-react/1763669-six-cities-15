@@ -10,3 +10,8 @@ export type UserData = {
   email: string;
   token: string;
 };
+
+export type FavoriteProps = {
+  id: string;
+  isFavorite: boolean;
+};

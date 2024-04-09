@@ -24,6 +24,7 @@ const setSpinner = createAction<boolean>('setSpinner');
 const setUserData = createAction<UserData>('setUserData');
 const clearUserData = createAction('clearUserData');
 
+
 export {
   changeCity,
   loadOffers,

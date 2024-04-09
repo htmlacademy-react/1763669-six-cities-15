@@ -4,14 +4,14 @@ import { useAppSelector } from '../../../store/useAppDispatch';
 import MemoizedPlaceCard from '../place-сard/place-сard';
 
 function FavoriteOffers () {
-  const favoriteOffers = useAppSelector((state) => state.offers).filter((offer) => offer.isFavorite);
-  const favoriteOffersCityNames = favoriteOffers.reduce((cityList: string[], currentOffer) => {
-    if (!(cityList.includes(currentOffer.city.name))) {
-      cityList.push(currentOffer.city.name);
-    }
-
-    return cityList;
-  }, []);
+  const favoriteOffers = useAppSelector((state) => state.favorites);
+  const favoriteOffersCityNames = favoriteOffers ?
+    favoriteOffers.reduce((cityList: string[], currentOffer) => {
+      if (!cityList.includes(currentOffer.city.name)) {
+        cityList.push(currentOffer.city.name);
+      }
+      return cityList;
+    }, []) : [];
 
   return (
     <ul className="favorites__list">
@@ -27,7 +27,7 @@ function FavoriteOffers () {
             </div>
             <div className="favorites__places">
               {
-                favoriteOffers.map((offer) => {
+                favoriteOffers?.map((offer) => {
                   if (offer.city.name === cityName) {
                     return <MemoizedPlaceCard { ...offer } key={ offer.id } />;
                   }
