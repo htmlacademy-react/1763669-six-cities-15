@@ -17,7 +17,7 @@ function Header({ location }: { location: Location }): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const handleLogout = (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleLogoutClick = (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (AuthorizationStatus.Auth) {
       evt.preventDefault();
       dispatch(logoutAction());
@@ -53,7 +53,7 @@ function Header({ location }: { location: Location }): JSX.Element {
                         <Link
                           className="header__nav-link"
                           to={ AppRoute.Main }
-                          onClick={ handleLogout }
+                          onClick={ handleLogoutClick }
                         >
                           <span className="header__signout">Sign out</span>
                         </Link> :

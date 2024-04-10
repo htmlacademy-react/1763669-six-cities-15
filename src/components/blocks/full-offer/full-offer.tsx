@@ -31,7 +31,6 @@ function FullOffer(): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const nearPlaces = [...useAppSelector((state) => state.nearPlaces) || [], activeOffer];
-  //const updatedNearPlaces = [...(nearPlaces || []), activeOffer];
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
 
   const setInlineWidthMemoized = useCallback((num: number) => setInlineWidth(num), []);

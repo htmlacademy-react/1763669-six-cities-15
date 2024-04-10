@@ -22,13 +22,13 @@ function Sorting(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const openSortingList = () => {
+  const handleSortingListClick = () => {
     if (sortingListRef.current) {
       sortingListRef.current.classList.toggle('places__options--opened');
     }
   };
 
-  const sortOffers = (evt: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+  const handleSortOffersClick = (evt: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const sortTypes = sortingListRef.current?.querySelectorAll('.places__option');
 
     if (sortingListRef.current) {
@@ -68,7 +68,7 @@ function Sorting(): JSX.Element {
       <span
         className="places__sorting-type"
         tabIndex={ 0 }
-        onClick={ openSortingList }
+        onClick={ handleSortingListClick }
         ref={ sortTypeRef }
       >
         Popular
@@ -83,28 +83,28 @@ function Sorting(): JSX.Element {
         <li
           className="places__option places__option--active"
           tabIndex={ 0 }
-          onClick={ sortOffers }
+          onClick={ handleSortOffersClick }
         >
           Popular
         </li>
         <li
           className="places__option"
           tabIndex={ 0 }
-          onClick={ sortOffers }
+          onClick={ handleSortOffersClick }
         >
           Price: low to high
         </li>
         <li
           className="places__option"
           tabIndex={ 0 }
-          onClick={ sortOffers }
+          onClick={ handleSortOffersClick }
         >
           Price: high to low
         </li>
         <li
           className="places__option"
           tabIndex={ 0 }
-          onClick={ sortOffers }
+          onClick={ handleSortOffersClick }
         >
           Top rated first
         </li>

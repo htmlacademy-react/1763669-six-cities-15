@@ -12,7 +12,7 @@ function ButtonBookmark({ id, isFavorite, isOffer = false }: ButtonBookmarkProps
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleFavoriteButtonClick = (evt: MouseEvent<HTMLButtonElement>) => {
+  const handleButtonBookmarClick = (evt: MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
 
     if (authorizationStatus === AuthorizationStatus.Auth.toString()) {
@@ -35,7 +35,7 @@ function ButtonBookmark({ id, isFavorite, isOffer = false }: ButtonBookmarkProps
         (isOffer && isFavorite) && 'offer__bookmark-button--active',
       ])}
       type="button"
-      onClick={ handleFavoriteButtonClick }
+      onClick={ handleButtonBookmarClick }
     >
       <svg
         className={classNames([

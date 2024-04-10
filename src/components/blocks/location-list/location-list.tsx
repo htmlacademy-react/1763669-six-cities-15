@@ -1,9 +1,10 @@
-import { memo } from 'react';
+import { memo, MouseEvent } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
-import { CityProps, CitiesProps } from './types';
 import { useAppDispatch, useAppSelector } from '../../../store/use-app-dispatch';
 import { changeCity, updateOffers, sortOffersPopular } from '../../../store/action';
+
+import { CityProps, CitiesProps } from './types';
 
 function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,6 +26,13 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
     dispatch(sortOffersPopular());
   };
 
+  const handleLocationListClick = (evt: MouseEvent<HTMLAnchorElement>, cityName: string) => {
+    evt.preventDefault();
+    dispatch(changeCity({ currentCity: cityName }));
+    dispatch(updateOffers());
+    setDefaultSorting();
+  };
+
   return (
     <ul className="locations__list tabs__list">
       {cities.map((city: CityProps) => (
@@ -37,14 +45,7 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
 
 
             to={ city.name }
-            onClick={
-              (evt) => {
-                evt.preventDefault();
-                dispatch(changeCity({ currentCity: city.name }));
-                dispatch(updateOffers());
-                setDefaultSorting();
-              }
-            }
+            onClick={ (evt) => handleLocationListClick(evt, city.name) }
           >
             <span>{ (city.name)[0].toUpperCase() + (city.name).slice(1) }</span>
           </Link>

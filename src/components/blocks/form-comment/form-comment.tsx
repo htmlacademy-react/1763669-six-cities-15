@@ -4,13 +4,13 @@ import { useAppDispatch } from '../../../store/use-app-dispatch';
 import { sendReviewAction } from '../../../services/api-actions';
 
 import { STAR_RATING, REVIEW_MIN_SYMBOLS, REVIEW_MAX_SYMBOLS } from '../../consts';
-import { CommentProps, handleChangeProps } from './types';
+import { CommentProps, handleFormCommentChangeProps } from './types';
 
 function FormComment () {
   const [review, setReview] = useState({starRating: 0, review: ''});
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleChange: handleChangeProps = (evt) => {
+  const handleFormCommentChange: handleFormCommentChangeProps = (evt) => {
     const { name, value } = evt.currentTarget;
     setReview({...review, [name]: value});
   };
@@ -27,7 +27,7 @@ function FormComment () {
     });
   };
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormCommentSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const reviewData: CommentProps = {
@@ -44,7 +44,7 @@ function FormComment () {
       className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={ handleSubmit }
+      onSubmit={ handleFormCommentSubmit }
       ref={ formRef }
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
@@ -58,7 +58,7 @@ function FormComment () {
                 value={ value }
                 id={ id }
                 type="radio"
-                onChange={ handleChange }
+                onChange={ handleFormCommentChange }
               />
               <label
                 htmlFor={ id }
@@ -78,7 +78,7 @@ function FormComment () {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={ handleChange }
+        onChange={ handleFormCommentChange }
         minLength={ REVIEW_MIN_SYMBOLS }
         maxLength={ REVIEW_MAX_SYMBOLS }
       >

@@ -9,7 +9,7 @@ function FormLogin(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormLoginSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (loginRef.current !== null && passwordRef.current !== null) {
@@ -22,7 +22,7 @@ function FormLogin(): JSX.Element {
 
   return(
     <form
-      onSubmit={ handleSubmit }
+      onSubmit={ handleFormLoginSubmit }
       className="login__form form"
       action=""
       method="post"
