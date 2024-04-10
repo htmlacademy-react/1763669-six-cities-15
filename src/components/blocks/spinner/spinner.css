@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
 
-  p {
+  .spinner-wrapper__text {
     font-size: 25px;
     color: #4481c3;
   }
