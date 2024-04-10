@@ -1,3 +1,4 @@
+import { memo, useRef, useEffect } from 'react';
 import { useAppDispatch } from '../../../store/useAppDispatch';
 import {
   sortOffersPriceHightToLow,
@@ -5,35 +6,46 @@ import {
   sortOffersRating,
   sortOffersPopular,
 } from '../../../store/action';
-import { memo } from 'react';
 
 function Sorting(): JSX.Element {
-  const sortingList = document.querySelector('.places__options');
-  const sortTypes = document.querySelectorAll('.places__option');
-  const sortType = document.querySelector('.places__sorting-type');
+  const sortingListRef = useRef<HTMLUListElement>(null);
+  const sortTypeRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    const sortTypes = sortingListRef.current?.querySelectorAll('.places__option');
+    if (sortTypes) {
+      sortTypes.forEach((type) => {
+        type.classList.remove('places__option--active');
+      });
+    }
+  }, []);
 
   const dispatch = useAppDispatch();
 
   const openSortingList = () => {
-    if (sortingList) {
-      sortingList.classList.toggle('places__options--opened');
+    if (sortingListRef.current) {
+      sortingListRef.current.classList.toggle('places__options--opened');
     }
   };
 
   const sortOffers = (evt: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    if (sortingList) {
-      sortingList.classList.remove('places__options--opened');
+    const sortTypes = sortingListRef.current?.querySelectorAll('.places__option');
+
+    if (sortingListRef.current) {
+      sortingListRef.current.classList.remove('places__options--opened');
     }
 
-    sortTypes.forEach((type) => {
-      type.classList.remove('.places__option--active');
-    });
+    if (sortTypes) {
+      sortTypes.forEach((type) => {
+        type.classList.remove('.places__option--active');
+      });
+    }
 
     evt.currentTarget.classList.add('.places__option--active');
-    if (sortType) {
-      sortType.childNodes[0].textContent = evt.currentTarget.textContent;
+    if (sortTypeRef.current) {
+      sortTypeRef.current.childNodes[0].textContent = evt.currentTarget.textContent;
 
-      switch (sortType.textContent) {
+      switch (sortTypeRef.current.textContent) {
         case 'Price: low to high':
           dispatch(sortOffersPriceLowToHight());
           break;
@@ -53,7 +65,12 @@ function Sorting(): JSX.Element {
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex={ 0 } onClick={ openSortingList }>
+      <span
+        className="places__sorting-type"
+        tabIndex={ 0 }
+        onClick={ openSortingList }
+        ref={ sortTypeRef }
+      >
         Popular
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
@@ -61,6 +78,7 @@ function Sorting(): JSX.Element {
       </span>
       <ul
         className="places__options places__options--custom"
+        ref= { sortingListRef }
       >
         <li
           className="places__option places__option--active"
