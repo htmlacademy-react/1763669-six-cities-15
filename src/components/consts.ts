@@ -96,7 +96,7 @@ const CITIES = [
       zoom: 13
     }
   },
-] as const;
+];
 
 const MAX_NEAR_OFFERS = 3;
 
