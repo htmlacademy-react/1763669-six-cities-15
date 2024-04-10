@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, memo } from 'react';
 import { useAppSelector } from '../../../store/useAppDispatch';
 
 import { AuthorizationStatus, CITIES } from '../../consts';
@@ -6,9 +6,9 @@ import Map from '../map/map';
 import FormComment from '../form-comment/form-comment';
 import Reviews from '../reviews/reviews';
 import { setInlineWidth, capitalizeFirstLetter } from '../../utils';
-import { memo } from 'react';
 import ButtonBookmark from '../button-bookmark/button-bookmark';
 import { ReviewProps } from '../review/types';
+import { PlaceCardProps } from '../place-сard/types';
 
 function FullOffer(): JSX.Element {
   const activeOffer = useAppSelector((state) => state.activeOffer);
@@ -29,7 +29,8 @@ function FullOffer(): JSX.Element {
   }
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const nearPlaces = useAppSelector((state) => state.nearPlaces);
+  const nearPlaces = [...useAppSelector((state) => state.nearPlaces) || [], activeOffer];
+  //const updatedNearPlaces = [...(nearPlaces || []), activeOffer];
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
 
   const setInlineWidthMemoized = useCallback((num: number) => setInlineWidth(num), []);
@@ -132,7 +133,7 @@ function FullOffer(): JSX.Element {
       </div>
       {
         nearPlaces && activeOffer && activeOffer.city &&
-          <Map city={ CITIES[selectedCityId] } points={ nearPlaces } activeOfferId={ activeOfferId || activeOffer.id } />
+          <Map city={ CITIES[selectedCityId] } points={ nearPlaces as PlaceCardProps[] } activeOfferId={ activeOfferId || activeOffer.id } />
       }
     </section>
   );

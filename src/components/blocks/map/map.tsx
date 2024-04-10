@@ -38,7 +38,7 @@ function Map({ city, points, activeOfferId }: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      points.forEach((point) => {
+      points?.forEach((point) => {
         leaflet
           .marker({
             lat: point.location.latitude,

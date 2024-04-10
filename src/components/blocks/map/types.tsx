@@ -11,7 +11,7 @@ export type CityProps = {
 
 export type MapProps = {
   city: CityProps;
-  points: PlaceCardProps[];
+  points: PlaceCardProps[] | null;
   activeOfferId?: string | null;
 };
 
