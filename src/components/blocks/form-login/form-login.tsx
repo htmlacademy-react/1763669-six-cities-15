@@ -46,6 +46,8 @@ function FormLogin(): JSX.Element {
           type="password"
           name="password"
           placeholder="Password"
+          pattern="(?=.*\d)(?=.*[a-zA-Z])"
+          title="Password must contain at least one letter and one number."
           required
         />
       </div>
