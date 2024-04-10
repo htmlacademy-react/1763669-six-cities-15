@@ -2,20 +2,26 @@ import { MouseEvent } from 'react';
 import { useAppSelector, useAppDispatch } from '../../../store/useAppDispatch';
 import { addFavoriteAction } from '../../../services/api-actions';
 
-import { AuthorizationStatus } from '../../consts';
+import { AuthorizationStatus, AppRoute } from '../../consts';
 import { ButtonBookmarkProps } from './types';
 import classNames from 'classnames';
+import { useNavigate } from 'react-router-dom';
 
 function ButtonBookmark({ id, isFavorite, isOffer = false }: ButtonBookmarkProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleFavoriteButtonClick = (evt: MouseEvent<HTMLButtonElement>) => {
-    const button = evt.currentTarget as HTMLButtonElement;
+    evt.preventDefault();
 
     if (authorizationStatus === AuthorizationStatus.Auth.toString()) {
+      const button = evt.currentTarget as HTMLButtonElement;
+
       button.classList.toggle(isOffer ? 'offer__bookmark-button--active' : 'place-card__bookmark-button--active');
       dispatch(addFavoriteAction({ offerId: id, isFavorite: !isFavorite }));
+    } else {
+      return navigate(AppRoute.Login);
     }
   };
 
