@@ -45,7 +45,7 @@ const STAR_RATING = [
     id: '1-star',
     title: 'terribly'
   },
-];
+] as const;
 
 const CITIES = [
   {
@@ -96,12 +96,14 @@ const CITIES = [
       zoom: 13
     }
   },
-];
+] as const;
 
 const MAX_NEAR_OFFERS = 3;
 
-const REVIEW_MIN_SYMBOLS = 50;
-const REVIEW_MAX_SYMBOLS = 300;
+const ReviewSymbols = {
+  Min: 50,
+  Max: 300
+} as const;
 
 export {
   AppRoute,
@@ -110,8 +112,7 @@ export {
   STAR_RATING,
   CITIES,
   MAX_NEAR_OFFERS,
-  REVIEW_MIN_SYMBOLS,
-  REVIEW_MAX_SYMBOLS
+  ReviewSymbols,
 };
 
 
