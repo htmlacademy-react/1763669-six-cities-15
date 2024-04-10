@@ -1,5 +1,5 @@
 import { useRef, FormEvent } from 'react';
-import { useAppDispatch } from '../../../store/useAppDispatch';
+import { useAppDispatch } from '../../../store/use-app-dispatch';
 import { loginAction } from '../../../services/api-actions';
 
 
@@ -9,7 +9,7 @@ function FormLogin(): JSX.Element {
 
   const dispatch = useAppDispatch();
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormLoginSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     if (loginRef.current !== null && passwordRef.current !== null) {
@@ -22,7 +22,7 @@ function FormLogin(): JSX.Element {
 
   return(
     <form
-      onSubmit={ handleSubmit }
+      onSubmit={ handleFormLoginSubmit }
       className="login__form form"
       action=""
       method="post"
@@ -46,6 +46,8 @@ function FormLogin(): JSX.Element {
           type="password"
           name="password"
           placeholder="Password"
+          pattern="(?=.*\d)(?=.*[a-zA-Z])"
+          title="Password must contain at least one letter and one number."
           required
         />
       </div>

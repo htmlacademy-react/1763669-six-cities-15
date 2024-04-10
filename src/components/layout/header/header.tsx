@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Link, Location } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../store/useAppDispatch';
+import { useAppDispatch, useAppSelector } from '../../../store/use-app-dispatch';
 import { logoutAction } from '../../../services/api-actions';
 
 import { AuthorizationStatus, AppRoute } from '../../consts';
@@ -12,10 +12,12 @@ function Header({ location }: { location: Location }): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus) as AuthorizationStatus;
   const user = useAppSelector((state) => state.userData);
+  const favoritesLength = useAppSelector((state) => state.favorites)?.length ?? 0;
+
 
   const dispatch = useAppDispatch();
 
-  const handleLogout = (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const handleLogoutClick = (evt: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     if (AuthorizationStatus.Auth) {
       evt.preventDefault();
       dispatch(logoutAction());
@@ -41,7 +43,7 @@ function Header({ location }: { location: Location }): JSX.Element {
                         <Link className="header__nav-link header__nav-link--profile" to={ AppRoute.Favorites }>
                           <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                           <span className="header__user-name user__name">{ user.email }</span>
-                          <span className="header__favorite-count">3</span>
+                          <span className="header__favorite-count">{ favoritesLength }</span>
                         </Link>
                       </li>
                   }
@@ -51,7 +53,7 @@ function Header({ location }: { location: Location }): JSX.Element {
                         <Link
                           className="header__nav-link"
                           to={ AppRoute.Main }
-                          onClick={ handleLogout }
+                          onClick={ handleLogoutClick }
                         >
                           <span className="header__signout">Sign out</span>
                         </Link> :

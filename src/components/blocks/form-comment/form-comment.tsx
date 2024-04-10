@@ -1,18 +1,16 @@
-import { Fragment, useState } from 'react';
-
+import { Fragment, useState, useRef, FormEvent } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../../store/useAppDispatch';
+import { useAppDispatch } from '../../../store/use-app-dispatch';
+import { sendReviewAction } from '../../../services/api-actions';
 
-import { FormEvent } from 'react';
-import { sendReview } from '../../../services/api-actions';
-
-import { STAR_RATING } from '../../consts';
-import { CommentProps, handleChangeProps } from './types';
+import { STAR_RATING, ReviewSymbols } from '../../consts';
+import { CommentProps, handleFormCommentChangeProps } from './types';
 
 function FormComment () {
   const [review, setReview] = useState({starRating: 0, review: ''});
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleChange: handleChangeProps = (evt) => {
+  const handleFormCommentChange: handleFormCommentChangeProps = (evt) => {
     const { name, value } = evt.currentTarget;
     setReview({...review, [name]: value});
   };
@@ -29,15 +27,16 @@ function FormComment () {
     });
   };
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleFormCommentSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
     const reviewData: CommentProps = {
       comment: review.review,
       rating: Number(review.starRating),
     };
-    dispatch(sendReview({ reviewData, offerId }));
+    dispatch(sendReviewAction({ reviewData, offerId }));
     resetForm();
+    formRef.current?.reset();
   };
 
   return (
@@ -45,7 +44,8 @@ function FormComment () {
       className="reviews__form form"
       action="#"
       method="post"
-      onSubmit={ handleSubmit }
+      onSubmit={ handleFormCommentSubmit }
+      ref={ formRef }
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
@@ -58,7 +58,7 @@ function FormComment () {
                 value={ value }
                 id={ id }
                 type="radio"
-                onChange={handleChange}
+                onChange={ handleFormCommentChange }
               />
               <label
                 htmlFor={ id }
@@ -78,7 +78,9 @@ function FormComment () {
         id="review"
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        onChange={ handleChange }
+        onChange={ handleFormCommentChange }
+        minLength={ ReviewSymbols.Min }
+        maxLength={ ReviewSymbols.Max }
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -88,7 +90,7 @@ function FormComment () {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={ review.review.length < 50 || review.starRating === 0 }
+          disabled={ review.review.length < ReviewSymbols.Min || review.review.length > ReviewSymbols.Max || review.starRating === 0 }
         >
           Submit
         </button>

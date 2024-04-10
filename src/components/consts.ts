@@ -8,6 +8,7 @@ enum AppRoute {
 const enum APIRoute {
   Offers = '/offers',
   Comments = '/comments',
+  Favorites = '/favorite',
   Login = '/login',
   Logout = '/logout'
 }
@@ -44,7 +45,7 @@ const STAR_RATING = [
     id: '1-star',
     title: 'terribly'
   },
-];
+] as const;
 
 const CITIES = [
   {
@@ -99,13 +100,19 @@ const CITIES = [
 
 const MAX_NEAR_OFFERS = 3;
 
+const ReviewSymbols = {
+  Min: 50,
+  Max: 300
+} as const;
+
 export {
   AppRoute,
   APIRoute,
   AuthorizationStatus,
   STAR_RATING,
   CITIES,
-  MAX_NEAR_OFFERS
+  MAX_NEAR_OFFERS,
+  ReviewSymbols,
 };
 
 

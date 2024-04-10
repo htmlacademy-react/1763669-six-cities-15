@@ -4,14 +4,14 @@ import { Link, Navigate, useLocation } from 'react-router-dom';
 import MemoizedHeader from '../../components/layout/header/header';
 import FormLogin from '../../components/blocks/form-login/form-login';
 import { AuthorizationStatus, AppRoute } from '../../components/consts';
-import { useAppSelector } from '../../store/useAppDispatch';
+import { useAppSelector } from '../../store/use-app-dispatch';
 
 function Login(): JSX.Element {
   const location = useLocation();
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus) as AuthorizationStatus;
   if (authorizationStatus === AuthorizationStatus.Auth) {
-    return <Navigate to={AppRoute.Favorites} />;
+    return <Navigate to={AppRoute.Main} />;
   }
 
   return (

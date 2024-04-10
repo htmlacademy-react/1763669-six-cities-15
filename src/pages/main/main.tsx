@@ -1,4 +1,4 @@
-import { useAppSelector } from '../../store/useAppDispatch';
+import { useAppSelector } from '../../store/use-app-dispatch';
 import { useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 

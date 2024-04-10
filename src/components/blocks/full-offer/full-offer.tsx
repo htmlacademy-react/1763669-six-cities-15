@@ -1,13 +1,15 @@
-import { useCallback } from 'react';
-import classNames from 'classnames';
-import { useAppSelector } from '../../../store/useAppDispatch';
+import { useCallback, memo } from 'react';
+import { useAppSelector } from '../../../store/use-app-dispatch';
 
 import { AuthorizationStatus, CITIES } from '../../consts';
 import Map from '../map/map';
 import FormComment from '../form-comment/form-comment';
 import Reviews from '../reviews/reviews';
 import { setInlineWidth, capitalizeFirstLetter } from '../../utils';
-import { memo } from 'react';
+import ButtonBookmark from '../button-bookmark/button-bookmark';
+import { ReviewProps } from '../review/types';
+import { PlaceCardProps } from '../place-сard/types';
+import classNames from 'classnames';
 
 function FullOffer(): JSX.Element {
   const activeOffer = useAppSelector((state) => state.activeOffer);
@@ -15,9 +17,20 @@ function FullOffer(): JSX.Element {
   selectedCityId = CITIES.findIndex((city) => city.name === activeOffer?.city.name);
 
   const reviews = useAppSelector((state) => state.reviews);
+  let finalReviews: ReviewProps[] = [];
+
+  if (reviews) {
+    const sortedReviews = [...reviews].sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
+
+    finalReviews = sortedReviews.slice(0, 10);
+  }
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const nearPlaces = useAppSelector((state) => state.nearPlaces);
+  const nearPlaces = [...useAppSelector((state) => state.nearPlaces) || [], activeOffer];
   const activeOfferId = useAppSelector((state) => state.activeOfferId);
 
   const setInlineWidthMemoized = useCallback((num: number) => setInlineWidth(num), []);
@@ -46,19 +59,11 @@ function FullOffer(): JSX.Element {
           }
           <div className="offer__name-wrapper">
             <h1 className="offer__name">{ activeOffer?.title }</h1>
-            <button
-              className={classNames([
-                'place-card__bookmark-button',
-                'button',
-                activeOffer?.isFavorite && 'place-card__bookmark-button--active'
-              ])}
-              type="button"
-            >
-              <svg className="offer__bookmark-icon" width="31" height="33">
-                <use xlinkHref="#icon-bookmark"></use>
-              </svg>
-              <span className="visually-hidden">To bookmarks</span>
-            </button>
+            <ButtonBookmark
+              id={ activeOffer?.id || ''}
+              isFavorite={ activeOffer?.isFavorite || false}
+              isOffer={ activeOffer ? true : undefined }
+            />
           </div>
           <div className="offer__rating rating">
             <div className="offer__stars rating__stars">
@@ -103,7 +108,13 @@ function FullOffer(): JSX.Element {
           <div className="offer__host">
             <h2 className="offer__host-title">Meet the host</h2>
             <div className="offer__host-user user">
-              <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+              <div
+                className={classNames([
+                  'offer__avatar-wrapper',
+                  'user__avatar-wrapper',
+                  activeOffer?.host.isPro && 'offer__avatar-wrapper--pro',
+                ])}
+              >
                 <img className="offer__avatar user__avatar" src={ activeOffer?.host.avatarUrl } width="74" height="74" alt="Host avatar" />
               </div>
               <span className="offer__user-name">{ activeOffer?.host.name }</span>
@@ -118,7 +129,7 @@ function FullOffer(): JSX.Element {
           </div>
           <section className="offer__reviews reviews">
             <h2 className="reviews__title">Reviews &middot; <span className="reviews__amount">{ reviews ? reviews.length : 0 }</span></h2>
-            <Reviews items={ reviews ? reviews : [] } />
+            <Reviews items={ finalReviews ? finalReviews : [] } />
             {
               authorizationStatus === AuthorizationStatus.Auth.toString() &&
                 <FormComment />
@@ -128,7 +139,7 @@ function FullOffer(): JSX.Element {
       </div>
       {
         nearPlaces && activeOffer && activeOffer.city &&
-          <Map city={ CITIES[selectedCityId] } points={ nearPlaces } activeOfferId={ activeOfferId } />
+          <Map city={ CITIES[selectedCityId] } points={ nearPlaces as PlaceCardProps[] } activeOfferId={ activeOfferId || activeOffer.id } />
       }
     </section>
   );
