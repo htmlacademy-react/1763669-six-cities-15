@@ -132,7 +132,7 @@ function FullOffer(): JSX.Element {
       </div>
       {
         nearPlaces && activeOffer && activeOffer.city &&
-          <Map city={ CITIES[selectedCityId] } points={ nearPlaces } activeOfferId={ activeOfferId } />
+          <Map city={ CITIES[selectedCityId] } points={ nearPlaces } activeOfferId={ activeOfferId || activeOffer.id } />
       }
     </section>
   );
