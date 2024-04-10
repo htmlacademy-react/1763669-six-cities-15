@@ -9,6 +9,7 @@ import { setInlineWidth, capitalizeFirstLetter } from '../../utils';
 import ButtonBookmark from '../button-bookmark/button-bookmark';
 import { ReviewProps } from '../review/types';
 import { PlaceCardProps } from '../place-сard/types';
+import classNames from 'classnames';
 
 function FullOffer(): JSX.Element {
   const activeOffer = useAppSelector((state) => state.activeOffer);
@@ -108,7 +109,13 @@ function FullOffer(): JSX.Element {
           <div className="offer__host">
             <h2 className="offer__host-title">Meet the host</h2>
             <div className="offer__host-user user">
-              <div className="offer__avatar-wrapper offer__avatar-wrapper--pro user__avatar-wrapper">
+              <div
+                className={classNames([
+                  'offer__avatar-wrapper',
+                  'user__avatar-wrapper',
+                  activeOffer?.host.isPro && 'offer__avatar-wrapper--pro',
+                ])}
+              >
                 <img className="offer__avatar user__avatar" src={ activeOffer?.host.avatarUrl } width="74" height="74" alt="Host avatar" />
               </div>
               <span className="offer__user-name">{ activeOffer?.host.name }</span>
