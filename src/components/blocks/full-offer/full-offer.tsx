@@ -1,5 +1,5 @@
 import { useCallback, memo } from 'react';
-import { useAppSelector } from '../../../store/useAppDispatch';
+import { useAppSelector } from '../../../store/use-app-dispatch';
 
 import { AuthorizationStatus, CITIES } from '../../consts';
 import Map from '../map/map';

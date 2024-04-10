@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { CityProps, CitiesProps } from './types';
-import { useAppDispatch, useAppSelector } from '../../../store/useAppDispatch';
+import { useAppDispatch, useAppSelector } from '../../../store/use-app-dispatch';
 import { changeCity, updateOffers, sortOffersPopular } from '../../../store/action';
 
 function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {

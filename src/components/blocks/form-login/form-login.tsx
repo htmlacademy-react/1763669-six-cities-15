@@ -1,5 +1,5 @@
 import { useRef, FormEvent } from 'react';
-import { useAppDispatch } from '../../../store/useAppDispatch';
+import { useAppDispatch } from '../../../store/use-app-dispatch';
 import { loginAction } from '../../../services/api-actions';
 
 

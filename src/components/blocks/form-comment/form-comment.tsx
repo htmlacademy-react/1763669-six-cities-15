@@ -1,6 +1,6 @@
 import { Fragment, useState, useRef, FormEvent } from 'react';
 import { useParams } from 'react-router-dom';
-import { useAppDispatch } from '../../../store/useAppDispatch';
+import { useAppDispatch } from '../../../store/use-app-dispatch';
 import { sendReviewAction } from '../../../services/api-actions';
 
 import { STAR_RATING, REVIEW_MIN_SYMBOLS, REVIEW_MAX_SYMBOLS } from '../../consts';

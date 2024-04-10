@@ -1,6 +1,6 @@
 import { HelmetProvider } from 'react-helmet-async';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import { useAppSelector } from '../../store/useAppDispatch';
+import { useAppSelector } from '../../store/use-app-dispatch';
 
 import { AppRoute, AuthorizationStatus } from '../consts';
 import PrivateRoute from '../blocks/private-route/private-route';

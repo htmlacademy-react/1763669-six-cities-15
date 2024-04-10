@@ -1,5 +1,5 @@
 import { memo, useRef, useEffect } from 'react';
-import { useAppDispatch } from '../../../store/useAppDispatch';
+import { useAppDispatch } from '../../../store/use-app-dispatch';
 import {
   sortOffersPriceHightToLow,
   sortOffersPriceLowToHight,

@@ -1,7 +1,7 @@
 import { memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
-import { useAppDispatch } from '../../../store/useAppDispatch';
+import { useAppDispatch } from '../../../store/use-app-dispatch';
 
 import { PlaceCardProps } from './types';
 import { showActiveCard } from '../../../store/action';

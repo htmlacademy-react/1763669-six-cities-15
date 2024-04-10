@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useLocation, useParams } from 'react-router-dom';
 import { fetchNearPlacesAction, fetchOfferAction, fetchReviewsAction } from '../../services/api-actions';
-import { useAppSelector } from '../../store/useAppDispatch';
+import { useAppSelector } from '../../store/use-app-dispatch';
 
 import MemoizedHeader from '../../components/layout/header/header';
 import MemoizedPlaceCards from '../../components/blocks/place-cards/place-cards';

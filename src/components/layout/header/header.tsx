@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Link, Location } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../../store/useAppDispatch';
+import { useAppDispatch, useAppSelector } from '../../../store/use-app-dispatch';
 import { logoutAction } from '../../../services/api-actions';
 
 import { AuthorizationStatus, AppRoute } from '../../consts';

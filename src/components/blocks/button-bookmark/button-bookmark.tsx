@@ -1,5 +1,5 @@
 import { MouseEvent } from 'react';
-import { useAppSelector, useAppDispatch } from '../../../store/useAppDispatch';
+import { useAppSelector, useAppDispatch } from '../../../store/use-app-dispatch';
 import { addFavoriteAction } from '../../../services/api-actions';
 
 import { AuthorizationStatus, AppRoute } from '../../consts';

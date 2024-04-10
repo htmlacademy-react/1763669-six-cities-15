@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../store/useAppDispatch';
+import { useAppDispatch } from '../../store/use-app-dispatch';
 
 import { fetchFavoritesAction } from '../../services/api-actions';
 import MemoizedHeader from '../../components/layout/header/header';

@@ -4,7 +4,7 @@ import { Link, Navigate, useLocation } from 'react-router-dom';
 import MemoizedHeader from '../../components/layout/header/header';
 import FormLogin from '../../components/blocks/form-login/form-login';
 import { AuthorizationStatus, AppRoute } from '../../components/consts';
-import { useAppSelector } from '../../store/useAppDispatch';
+import { useAppSelector } from '../../store/use-app-dispatch';
 
 function Login(): JSX.Element {
   const location = useLocation();

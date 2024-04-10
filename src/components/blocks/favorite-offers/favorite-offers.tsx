@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../../store/useAppDispatch';
+import { useAppSelector } from '../../../store/use-app-dispatch';
 
 import MemoizedPlaceCard from '../place-сard/place-сard';
 
