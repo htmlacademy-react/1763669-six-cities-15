@@ -1,9 +1,6 @@
-import { Fragment, useState } from 'react';
-
+import { Fragment, useState, useRef, FormEvent } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../store/useAppDispatch';
-
-import { FormEvent } from 'react';
 import { sendReviewAction } from '../../../services/api-actions';
 
 import { STAR_RATING } from '../../consts';
@@ -11,6 +8,7 @@ import { CommentProps, handleChangeProps } from './types';
 
 function FormComment () {
   const [review, setReview] = useState({starRating: 0, review: ''});
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleChange: handleChangeProps = (evt) => {
     const { name, value } = evt.currentTarget;
@@ -38,6 +36,7 @@ function FormComment () {
     };
     dispatch(sendReviewAction({ reviewData, offerId }));
     resetForm();
+    formRef.current?.reset();
   };
 
   return (
@@ -46,6 +45,7 @@ function FormComment () {
       action="#"
       method="post"
       onSubmit={ handleSubmit }
+      ref={ formRef }
     >
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">

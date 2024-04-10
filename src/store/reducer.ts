@@ -16,6 +16,7 @@ import {
   setSpinner,
   setUserData,
   clearUserData,
+  addReview
 } from './action';
 
 
@@ -91,6 +92,9 @@ const reducer = createReducer(initialState, (builder) => {
         email: '',
         token: '',
       };
+    })
+    .addCase(addReview, (state, action) => {
+      state.reviews = [action.payload, ...state.reviews ?? []];
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
