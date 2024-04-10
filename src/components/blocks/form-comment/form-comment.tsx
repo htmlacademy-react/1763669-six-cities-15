@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAppDispatch } from '../../../store/useAppDispatch';
 import { sendReviewAction } from '../../../services/api-actions';
 
-import { STAR_RATING } from '../../consts';
+import { STAR_RATING, REVIEW_MIN_SYMBOLS, REVIEW_MAX_SYMBOLS } from '../../consts';
 import { CommentProps, handleChangeProps } from './types';
 
 function FormComment () {
@@ -58,7 +58,7 @@ function FormComment () {
                 value={ value }
                 id={ id }
                 type="radio"
-                onChange={handleChange}
+                onChange={ handleChange }
               />
               <label
                 htmlFor={ id }
@@ -79,6 +79,8 @@ function FormComment () {
         name="review"
         placeholder="Tell how was your stay, what you like and what can be improved"
         onChange={ handleChange }
+        minLength={ REVIEW_MIN_SYMBOLS }
+        maxLength={ REVIEW_MAX_SYMBOLS }
       >
       </textarea>
       <div className="reviews__button-wrapper">
@@ -88,7 +90,7 @@ function FormComment () {
         <button
           className="reviews__submit form__submit button"
           type="submit"
-          disabled={ review.review.length < 50 || review.starRating === 0 }
+          disabled={ review.review.length < REVIEW_MIN_SYMBOLS || review.review.length > REVIEW_MAX_SYMBOLS || review.starRating === 0 }
         >
           Submit
         </button>

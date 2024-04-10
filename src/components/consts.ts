@@ -100,13 +100,18 @@ const CITIES = [
 
 const MAX_NEAR_OFFERS = 3;
 
+const REVIEW_MIN_SYMBOLS = 50;
+const REVIEW_MAX_SYMBOLS = 300;
+
 export {
   AppRoute,
   APIRoute,
   AuthorizationStatus,
   STAR_RATING,
   CITIES,
-  MAX_NEAR_OFFERS
+  MAX_NEAR_OFFERS,
+  REVIEW_MIN_SYMBOLS,
+  REVIEW_MAX_SYMBOLS
 };
 
 
