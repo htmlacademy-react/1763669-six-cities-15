@@ -5,24 +5,28 @@ import { AuthorizationStatus } from '../components/consts';
 import { UserData } from '../services/types';
 import { ReviewProps } from '../components/blocks/review/types';
 
-const changeCity = createAction<{currentCity: string}>('changeCity');
-const loadOffers = createAction<{ offers: PlaceCardProps[] }>('loadOffers');
-const showActiveCard = createAction<{ activeOfferId: string }>('showActiveCard');
-const updateOffers = createAction('updateOffers');
-const loadOffer = createAction<PlaceCardProps>('setActiveOffer');
-const loadNearPlaces = createAction<PlaceCardProps[]>('loadNearPlaces');
-const loadReviews = createAction<ReviewProps[]>('loadReviews');
-const addReview = createAction<ReviewProps>('addReview');
+const changeCity = createAction<{ currentCity: string }>('city/changeCity');
 
-const sortOffersPopular = createAction('sortOffersPopular');
-const sortOffersPriceLowToHight = createAction('sortOffersPriceLowToHight');
-const sortOffersPriceHightToLow = createAction('sortOffersPriceHightToLow');
-const sortOffersRating = createAction('sortOffersRating');
+const loadOffers = createAction<{ offers: PlaceCardProps[] }>('offers/loadOffers');
+const updateOffers = createAction('offers/updateOffers');
 
-const requireAuthorization = createAction<AuthorizationStatus>('requireAuthorization');
+const showActiveCard = createAction<{ activeOfferId: string }>('offer/showActiveCard');
+const loadOffer = createAction<PlaceCardProps>('offer/setActiveOffer');
+const loadNearPlaces = createAction<PlaceCardProps[]>('offer/loadNearPlaces');
+
+const loadReviews = createAction<ReviewProps[]>('reviews/loadReviews');
+const addReview = createAction<ReviewProps>('reviews/addReview');
+
+const sortOffersPopular = createAction('sorting/sortOffersPopular');
+const sortOffersPriceLowToHight = createAction('sorting/sortOffersPriceLowToHight');
+const sortOffersPriceHightToLow = createAction('sorting/sortOffersPriceHightToLow');
+const sortOffersRating = createAction('sorting/sortOffersRating');
+
+const requireAuthorization = createAction<AuthorizationStatus>('userData/requireAuthorization');
+const setUserData = createAction<UserData>('userData/setUserData');
+const clearUserData = createAction('userData/clearUserData');
+
 const setSpinner = createAction<boolean>('setSpinner');
-const setUserData = createAction<UserData>('setUserData');
-const clearUserData = createAction('clearUserData');
 
 
 export {
