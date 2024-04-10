@@ -11,7 +11,7 @@ function Login(): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus) as AuthorizationStatus;
   if (authorizationStatus === AuthorizationStatus.Auth) {
-    return <Navigate to={AppRoute.Favorites} />;
+    return <Navigate to={AppRoute.Main} />;
   }
 
   return (
