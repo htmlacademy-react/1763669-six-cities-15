@@ -128,10 +128,10 @@ const fetchFavoritesAction = createAsyncThunk<PlaceCardProps[], undefined, { ext
 
 const addFavoriteAction = createAsyncThunk<PlaceCardProps, FavoriteProps, { dispatch: AppDispatch; extra: AxiosInstance }>(
   'data/addFavorite',
-  async ({ offerId, isFavorite }, { extra: api }) => {
+  async ({ offerId, isFavorite }, { dispatch, extra: api }) => {
     const status = Number(isFavorite).toString();
     const { data } = await api.post<PlaceCardProps>(`${ APIRoute.Favorites }/${ offerId }/${ status }`);
-
+    dispatch(fetchFavoritesAction());
     return data;
   }
 );

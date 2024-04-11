@@ -12,13 +12,13 @@ function ButtonBookmark({ id, isFavorite, isOffer = false }: ButtonBookmarkProps
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleButtonBookmarClick = (evt: MouseEvent<HTMLButtonElement>) => {
+  const handleButtonBookmarkClick = (evt: MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
 
     if (authorizationStatus === AuthorizationStatus.Auth.toString()) {
       const button = evt.currentTarget as HTMLButtonElement;
-
       button.classList.toggle(isOffer ? 'offer__bookmark-button--active' : 'place-card__bookmark-button--active');
+
       dispatch(addFavoriteAction({ offerId: id, isFavorite: !isFavorite }));
     } else {
       return navigate(AppRoute.Login);
@@ -46,7 +46,7 @@ function ButtonBookmark({ id, isFavorite, isOffer = false }: ButtonBookmarkProps
         (isOffer && isFavorite) && 'offer__bookmark-button--active',
       ])}
       type="button"
-      onClick={ handleButtonBookmarClick }
+      onClick={ handleButtonBookmarkClick }
     >
       <svg
         className={classNames([

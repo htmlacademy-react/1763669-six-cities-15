@@ -5,6 +5,7 @@ import { logoutAction } from '../../../services/api-actions';
 
 import { AuthorizationStatus, AppRoute } from '../../consts';
 import { isMainPage, isFavoritesPage, isOfferPage } from '../../utils';
+//import { clearFavorites } from '../../../store/action';
 
 
 function Header({ location }: { location: Location }): JSX.Element {
@@ -12,7 +13,8 @@ function Header({ location }: { location: Location }): JSX.Element {
 
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus) as AuthorizationStatus;
   const user = useAppSelector((state) => state.userData);
-  const favoritesLength = useAppSelector((state) => state.favorites)?.length ?? 0;
+  const favorites = useAppSelector((state) => state.favorites);
+  const favoritesLength = favorites?.length ?? 0;
 
 
   const dispatch = useAppDispatch();
@@ -21,6 +23,7 @@ function Header({ location }: { location: Location }): JSX.Element {
     if (AuthorizationStatus.Auth) {
       evt.preventDefault();
       dispatch(logoutAction());
+      //dispatch(clearFavorites());
     }
   };
 

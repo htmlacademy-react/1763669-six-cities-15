@@ -25,6 +25,8 @@ const requireAuthorization = createAction<AuthorizationStatus>('userData/require
 const setUserData = createAction<UserData>('userData/setUserData');
 const clearUserData = createAction('userData/clearUserData');
 
+const clearFavorites = createAction('favorites/clearFavorites');
+
 const setSpinner = createAction<boolean>('setSpinner');
 
 
@@ -44,4 +46,5 @@ export {
   setSpinner,
   setUserData,
   clearUserData,
+  clearFavorites,
 };

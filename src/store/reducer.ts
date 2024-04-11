@@ -15,7 +15,8 @@ import {
   setSpinner,
   setUserData,
   clearUserData,
-  addReview
+  addReview,
+  clearFavorites
 } from './action';
 
 
@@ -100,6 +101,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchFavoritesAction.fulfilled, (state, action) => {
       state.favorites = action.payload || [];
+    })
+    .addCase(clearFavorites, (state) => {
+      state.favorites = [];
     })
     .addCase(addFavoriteAction.fulfilled, (state, action: PayloadAction<PlaceCardProps>) => {
       if (action.payload.isFavorite) {
