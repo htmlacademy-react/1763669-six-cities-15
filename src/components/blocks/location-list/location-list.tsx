@@ -1,4 +1,4 @@
-import { memo, MouseEvent } from 'react';
+import { memo, MouseEvent, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../../store/use-app-dispatch';
@@ -10,17 +10,19 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCity = useAppSelector((state) => state.currentCity);
 
+  const sortTypesRef = useRef<NodeListOf<HTMLElement>>(null);
+  const sortTypeRef = useRef<HTMLElement | null>(null);
+
   const setDefaultSorting = () => {
-    const sortTypes = document.querySelectorAll('.places__option');
-    const sortType = document.querySelector('.places__sorting-type');
+    if (sortTypesRef.current) {
+      sortTypesRef.current.forEach((type) => {
+        type.classList.remove('.places__option--active');
+      });
+      sortTypesRef.current[0].classList.add('.places__option--active');
+    }
 
-    sortTypes.forEach((type) => {
-      type.classList.remove('.places__option--active');
-    });
-    sortTypes[0].classList.add('.places__option--active');
-
-    if (sortType) {
-      sortType.childNodes[0].textContent = 'Popular';
+    if (sortTypeRef.current) {
+      sortTypeRef.current.childNodes[0].textContent = 'Popular';
     }
 
     dispatch(sortOffersPopular());
@@ -58,3 +60,4 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
 const MemoizedLocationList = memo(LocationList);
 
 export default MemoizedLocationList;
+
