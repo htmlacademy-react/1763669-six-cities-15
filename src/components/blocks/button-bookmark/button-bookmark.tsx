@@ -25,6 +25,17 @@ function ButtonBookmark({ id, isFavorite, isOffer = false }: ButtonBookmarkProps
     }
   };
 
+  const ButtonBookmarkDimensions = {
+    offerPage: {
+      width: 31,
+      height: 33,
+    },
+    otherPages: {
+      width: 18,
+      height: 19,
+    }
+  } as const;
+
   return (
     <button
       className={classNames([
@@ -42,8 +53,8 @@ function ButtonBookmark({ id, isFavorite, isOffer = false }: ButtonBookmarkProps
           !isOffer && 'place-card__bookmark-icon',
           isOffer && 'offer__bookmark-icon',
         ])}
-        width={ isOffer ? '31' : '18' }
-        height={ isOffer ? '33' : '19' }
+        width={ isOffer ? ButtonBookmarkDimensions.offerPage.width : ButtonBookmarkDimensions.otherPages.width }
+        height={ isOffer ? ButtonBookmarkDimensions.offerPage.height : ButtonBookmarkDimensions.otherPages.height }
       >
         <use xlinkHref="#icon-bookmark"></use>
       </svg>
