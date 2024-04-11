@@ -2,7 +2,7 @@ import { memo, MouseEvent, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../../store/use-app-dispatch';
-import { changeCity, updateOffers, sortOffersPopular } from '../../../store/action';
+import { changeCity, updateOffers } from '../../../store/action';
 
 import { CityProps, CitiesProps } from './types';
 
@@ -25,7 +25,7 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
       sortTypeRef.current.childNodes[0].textContent = 'Popular';
     }
 
-    dispatch(sortOffersPopular());
+    dispatch(updateOffers());
   };
 
   const handleLocationListClick = (evt: MouseEvent<HTMLAnchorElement>, cityName: string) => {

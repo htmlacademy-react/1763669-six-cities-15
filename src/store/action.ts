@@ -17,7 +17,6 @@ const loadNearPlaces = createAction<PlaceCardProps[]>('offer/loadNearPlaces');
 const loadReviews = createAction<ReviewProps[]>('reviews/loadReviews');
 const addReview = createAction<ReviewProps>('reviews/addReview');
 
-const sortOffersPopular = createAction('sorting/sortOffersPopular');
 const sortOffersPriceLowToHight = createAction('sorting/sortOffersPriceLowToHight');
 const sortOffersPriceHightToLow = createAction('sorting/sortOffersPriceHightToLow');
 const sortOffersRating = createAction('sorting/sortOffersRating');
@@ -38,7 +37,6 @@ export {
   loadNearPlaces,
   loadReviews,
   addReview,
-  sortOffersPopular,
   sortOffersPriceLowToHight,
   sortOffersPriceHightToLow,
   sortOffersRating,

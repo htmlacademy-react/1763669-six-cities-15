@@ -8,7 +8,6 @@ import {
   loadOffer,
   loadNearPlaces,
   loadReviews,
-  sortOffersPopular,
   sortOffersPriceLowToHight,
   sortOffersPriceHightToLow,
   sortOffersRating,
@@ -68,9 +67,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(updateOffers, (state) => {
       state.currentOffers = state.offers.filter((offer) => offer.city.name === state.currentCity);
-    })
-    .addCase(sortOffersPopular, (state) => {
-      state.currentOffers = state.currentOffers.sort(() => Math.random() - 0.5);
     })
     .addCase(sortOffersPriceLowToHight, (state) => {
       state.currentOffers = state.currentOffers.slice().sort((a, b) => a.price - b.price);
