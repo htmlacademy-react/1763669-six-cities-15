@@ -1,8 +1,8 @@
-import { memo, MouseEvent } from 'react';
+import { memo, MouseEvent, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '../../../store/use-app-dispatch';
-import { changeCity, updateOffers, sortOffersPopular } from '../../../store/action';
+import { changeCity, updateOffers } from '../../../store/action';
 
 import { CityProps, CitiesProps } from './types';
 
@@ -10,20 +10,22 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
   const dispatch = useAppDispatch();
   const currentCity = useAppSelector((state) => state.currentCity);
 
+  const sortTypesRef = useRef<NodeListOf<HTMLElement>>(null);
+  const sortTypeRef = useRef<HTMLElement | null>(null);
+
   const setDefaultSorting = () => {
-    const sortTypes = document.querySelectorAll('.places__option');
-    const sortType = document.querySelector('.places__sorting-type');
-
-    sortTypes.forEach((type) => {
-      type.classList.remove('.places__option--active');
-    });
-    sortTypes[0].classList.add('.places__option--active');
-
-    if (sortType) {
-      sortType.childNodes[0].textContent = 'Popular';
+    if (sortTypesRef.current) {
+      sortTypesRef.current.forEach((type) => {
+        type.classList.remove('.places__option--active');
+      });
+      sortTypesRef.current[0].classList.add('.places__option--active');
     }
 
-    dispatch(sortOffersPopular());
+    if (sortTypeRef.current) {
+      sortTypeRef.current.childNodes[0].textContent = 'Popular';
+    }
+
+    dispatch(updateOffers());
   };
 
   const handleLocationListClick = (evt: MouseEvent<HTMLAnchorElement>, cityName: string) => {
@@ -58,3 +60,4 @@ function LocationList({ cities }: { cities: CitiesProps }): JSX.Element {
 const MemoizedLocationList = memo(LocationList);
 
 export default MemoizedLocationList;
+

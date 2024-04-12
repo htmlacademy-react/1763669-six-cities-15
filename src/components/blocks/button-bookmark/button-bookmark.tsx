@@ -12,18 +12,29 @@ function ButtonBookmark({ id, isFavorite, isOffer = false }: ButtonBookmarkProps
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleButtonBookmarClick = (evt: MouseEvent<HTMLButtonElement>) => {
+  const handleButtonBookmarkClick = (evt: MouseEvent<HTMLButtonElement>) => {
     evt.preventDefault();
 
     if (authorizationStatus === AuthorizationStatus.Auth.toString()) {
       const button = evt.currentTarget as HTMLButtonElement;
-
       button.classList.toggle(isOffer ? 'offer__bookmark-button--active' : 'place-card__bookmark-button--active');
+
       dispatch(addFavoriteAction({ offerId: id, isFavorite: !isFavorite }));
     } else {
       return navigate(AppRoute.Login);
     }
   };
+
+  const ButtonBookmarkDimensions = {
+    offerPage: {
+      width: 31,
+      height: 33,
+    },
+    otherPages: {
+      width: 18,
+      height: 19,
+    }
+  } as const;
 
   return (
     <button
@@ -35,15 +46,15 @@ function ButtonBookmark({ id, isFavorite, isOffer = false }: ButtonBookmarkProps
         (isOffer && isFavorite) && 'offer__bookmark-button--active',
       ])}
       type="button"
-      onClick={ handleButtonBookmarClick }
+      onClick={ handleButtonBookmarkClick }
     >
       <svg
         className={classNames([
           !isOffer && 'place-card__bookmark-icon',
           isOffer && 'offer__bookmark-icon',
         ])}
-        width={ isOffer ? '31' : '18' }
-        height={ isOffer ? '33' : '19' }
+        width={ isOffer ? ButtonBookmarkDimensions.offerPage.width : ButtonBookmarkDimensions.otherPages.width }
+        height={ isOffer ? ButtonBookmarkDimensions.offerPage.height : ButtonBookmarkDimensions.otherPages.height }
       >
         <use xlinkHref="#icon-bookmark"></use>
       </svg>

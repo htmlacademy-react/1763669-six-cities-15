@@ -12,8 +12,19 @@ function PlaceCard(props: PlaceCardProps): JSX.Element {
   const { pathname } = useLocation();
   const dispatch = useAppDispatch();
 
-  const previewWidth = isFavoritesPage(pathname) ? 150 : 260;
-  const previewHeight = isFavoritesPage(pathname) ? 110 : 200;
+  const PlaceCardDimensions = {
+    favoritePage: {
+      width: 150,
+      height: 110,
+    },
+    otherPages: {
+      width: 260,
+      height: 200,
+    }
+  } as const;
+
+  const previewWidth = isFavoritesPage(pathname) ? PlaceCardDimensions.favoritePage.width : PlaceCardDimensions.otherPages.width;
+  const previewHeight = isFavoritesPage(pathname) ? PlaceCardDimensions.favoritePage.height : PlaceCardDimensions.otherPages.height;
   const setInlineWidthMemoized = useCallback((num: number) => setInlineWidth(num), []);
 
   return (

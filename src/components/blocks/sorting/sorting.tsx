@@ -4,7 +4,7 @@ import {
   sortOffersPriceHightToLow,
   sortOffersPriceLowToHight,
   sortOffersRating,
-  sortOffersPopular,
+  updateOffers,
 } from '../../../store/action';
 
 function Sorting(): JSX.Element {
@@ -56,7 +56,7 @@ function Sorting(): JSX.Element {
           dispatch(sortOffersRating());
           break;
         default:
-          dispatch(sortOffersPopular());
+          dispatch(updateOffers());
           break;
       }
     }

@@ -8,7 +8,6 @@ import {
   loadOffer,
   loadNearPlaces,
   loadReviews,
-  sortOffersPopular,
   sortOffersPriceLowToHight,
   sortOffersPriceHightToLow,
   sortOffersRating,
@@ -16,7 +15,8 @@ import {
   setSpinner,
   setUserData,
   clearUserData,
-  addReview
+  addReview,
+  clearFavorites
 } from './action';
 
 
@@ -69,9 +69,6 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(updateOffers, (state) => {
       state.currentOffers = state.offers.filter((offer) => offer.city.name === state.currentCity);
     })
-    .addCase(sortOffersPopular, (state) => {
-      state.currentOffers = state.currentOffers.sort(() => Math.random() - 0.5);
-    })
     .addCase(sortOffersPriceLowToHight, (state) => {
       state.currentOffers = state.currentOffers.slice().sort((a, b) => a.price - b.price);
     })
@@ -104,6 +101,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(fetchFavoritesAction.fulfilled, (state, action) => {
       state.favorites = action.payload || [];
+    })
+    .addCase(clearFavorites, (state) => {
+      state.favorites = [];
     })
     .addCase(addFavoriteAction.fulfilled, (state, action: PayloadAction<PlaceCardProps>) => {
       if (action.payload.isFavorite) {

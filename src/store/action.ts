@@ -17,7 +17,6 @@ const loadNearPlaces = createAction<PlaceCardProps[]>('offer/loadNearPlaces');
 const loadReviews = createAction<ReviewProps[]>('reviews/loadReviews');
 const addReview = createAction<ReviewProps>('reviews/addReview');
 
-const sortOffersPopular = createAction('sorting/sortOffersPopular');
 const sortOffersPriceLowToHight = createAction('sorting/sortOffersPriceLowToHight');
 const sortOffersPriceHightToLow = createAction('sorting/sortOffersPriceHightToLow');
 const sortOffersRating = createAction('sorting/sortOffersRating');
@@ -25,6 +24,8 @@ const sortOffersRating = createAction('sorting/sortOffersRating');
 const requireAuthorization = createAction<AuthorizationStatus>('userData/requireAuthorization');
 const setUserData = createAction<UserData>('userData/setUserData');
 const clearUserData = createAction('userData/clearUserData');
+
+const clearFavorites = createAction('favorites/clearFavorites');
 
 const setSpinner = createAction<boolean>('setSpinner');
 
@@ -38,7 +39,6 @@ export {
   loadNearPlaces,
   loadReviews,
   addReview,
-  sortOffersPopular,
   sortOffersPriceLowToHight,
   sortOffersPriceHightToLow,
   sortOffersRating,
@@ -46,4 +46,5 @@ export {
   setSpinner,
   setUserData,
   clearUserData,
+  clearFavorites,
 };
